@@ -16,8 +16,11 @@ import numpy as np
 class CustomHuggingFaceEmbeddings(HuggingFaceEmbeddings):
     def embed_documents(self, texts):
         embeddings = super().embed_documents(texts)
-        # Ensure embeddings are in np.ndarray format (if not already)
-        embeddings = np.asarray(embeddings)
+        # Ensure all outputs are numpy arrays and handle tensors properly
+        if hasattr(embeddings[0], 'numpy'):
+            embeddings = np.asarray([emb.numpy() for emb in embeddings])
+        else:
+            embeddings = np.asarray(embeddings)
         return embeddings
 
 # ----------------------------
