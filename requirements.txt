@@ -3,4 +3,4 @@ transformers==4.21.0
 langchain-community==0.3.21
 huggingface_hub[hf_xet]
 faiss-cpu==1.7.0
-numpy==1.23.1
+Numpy
