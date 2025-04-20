@@ -35,9 +35,48 @@
 # import time
 # from pathlib import Path
 
-from transformers import pipeline
-import streamlit as st
+# from transformers import pipeline
+# import streamlit as st
+# import os
+# import asyncio
+# import nest_asyncio
+# from transformers import logging
+# from langchain_community.embeddings import HuggingFaceEmbeddings
+# from langchain_community.vectorstores import FAISS
+# from langchain_community.document_loaders import TextLoader
+# #from langchain_ollama import OllamaLLM
+# from langchain_community.llms import Ollama
+# from langchain.chains import ConversationalRetrievalChain
+# from langchain.text_splitter import CharacterTextSplitter
+# from langchain.memory import ConversationSummaryBufferMemory
+# import time
+# from pathlib import Path
+
+
+
 import os
+from pathlib import Path
+
+#Added Comment - Pankaj
+
+# 1. Set ALL possible cache locations (new HuggingFace versions need this)
+cache_dir = Path("D:/huggingface_cache")
+cache_dir.mkdir(exist_ok=True, parents=True)
+
+os.environ['HF_HOME'] = str(cache_dir)
+os.environ['HF_DATASETS_CACHE'] = str(cache_dir / "datasets")
+os.environ['TRANSFORMERS_CACHE'] = str(cache_dir)
+os.environ['HUGGINGFACE_HUB_CACHE'] = str(cache_dir)
+
+# 2. Patch the cache before any imports (critical!)
+import huggingface_hub.constants
+huggingface_hub.constants.HF_HUB_CACHE = str(cache_dir)
+
+# 3. Now import transformers
+from transformers import pipeline
+
+
+import streamlit as st
 import asyncio
 import nest_asyncio
 from transformers import logging
