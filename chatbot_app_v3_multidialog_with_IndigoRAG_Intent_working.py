@@ -11,8 +11,8 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.memory import ConversationSummaryBufferMemory
 from sentence_transformers import SentenceTransformer
-import time
 import torch
+import time
 
 # ----------------------------
 # App Configuration
@@ -37,14 +37,24 @@ huggingface_hub.constants.HF_HUB_CACHE = str(HF_CACHE_DIR)
 nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
-# Check if a GPU is available, else default to CPU
+# ----------------------------
+# Ensure Model Uses CPU Instead of GPU
+# ----------------------------
+
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f"Using device: {device}")  # For debugging
 
-# Load the model
-model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
+# Initialize the SentenceTransformer model
+model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Alternatively, if using HuggingFaceEmbeddings
+# Ensure the model is fully initialized before moving it to the device
+if isinstance(model, torch.nn.Module):
+    # Using to_empty() to move the model from meta to the desired device
+    model = model.to(device).to_empty()
+else:
+    model = model.to(device)
+
+# or if using HuggingFaceEmbeddings
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
@@ -221,14 +231,31 @@ if user_input and st.session_state.display_stage == 0:
     sentiment_label = sentiment_result['label']
     sentiment_emoji = {"POSITIVE": "😄", "NEGATIVE": "😞", "NEUTRAL": "😐"}.get(sentiment_label.upper(), "💬")
 
-    intent_result = intent_pipe(user_input, candidate_labels=intent_labels)
-    intent_label = intent_result["labels"][0]
-    intent_score = round(intent_result["scores"][0] * 100, 2)
+    # Intent prediction
+    intent_result = intent_pipe(user_input, intent_labels)
+    intent_label = intent_result['labels'][0]
+    intent_score = intent_result['scores'][0]
 
-    st.session_state.messages.append(st.session_state.current_message)
-    st.session_state.messages.append({
-        "role": "ChatAgent",
-        "content": full_response.strip()
-    })
+    user_message = {
+        'role': 'Customer',
+        'content': user_input,
+        'sentiment': sentiment_label,
+        'intent': intent_label,
+        'score': round(intent_score * 100, 2)
+    }
+    st.session_state.messages.append(user_message)
+
+    # Show the conversation flow
+    display_message(user_message, show_analysis=True)
+    st.session_state.display_stage = 1
+
+    # Ask the bot for a response
+    bot_message = qa_chain.run(user_input)
+    bot_message_obj = {'role': 'ChatAgent', 'content': bot_message}
+    st.session_state.messages.append(bot_message_obj)
+
+    # Show bot response
+    display_message(bot_message_obj)
     st.session_state.display_stage = 0
+
     st.session_state.current_message = None
