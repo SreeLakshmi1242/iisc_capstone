@@ -1,6 +1,6 @@
 os
 pathlib 
-huggingface_hub.constants
+huggingface_hub
 
 # 3. Now import transformers
 transformers
