@@ -7,6 +7,8 @@ import nest_asyncio
 from transformers import logging, pipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.embeddings import HuggingFaceInstructEmbeddings
+from langchain_community.embeddings import SpacyEmbeddings
+import spacy
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain.chains import ConversationalRetrievalChain
@@ -40,7 +42,7 @@ nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
 # Initialize components
-embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+embeddings = SpacyEmbeddings(model_name='en_core_web_sm')
 
 # ----------------------------
 # Helper Functions
