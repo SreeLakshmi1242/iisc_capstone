@@ -3,7 +3,7 @@ transformers
 langchain-community
 huggingface-hub
 sentence-transformers==2.2.2
-torch==1.13.1
+torch==2.2.0
 faiss-cpu
 pypdf
 asyncio
