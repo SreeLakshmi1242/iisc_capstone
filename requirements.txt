@@ -1,8 +1,7 @@
-pathlib 
-huggingface_hub>=0.21.0
-transformers
 streamlit
-asyncio
-nest_asyncio
-langchain_community
+transformers
+langchain-community
+huggingface-hub
 sentence-transformers
+faiss-cpu
+pypdf
