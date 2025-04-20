@@ -41,8 +41,13 @@ huggingface_hub.constants.HF_HUB_CACHE = str(HF_CACHE_DIR)
 nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
-# Initialize components
-embeddings = SpacyEmbeddings(model_name='en_core_web_sm')
+# Ensure model uses CPU instead of GPU in Streamlit Cloud
+device = "cpu"  # Enforce CPU usage
+embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2", device=device)
+
+# Alternatively, if using SentenceTransformer directly:
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
 
 # ----------------------------
 # Helper Functions
