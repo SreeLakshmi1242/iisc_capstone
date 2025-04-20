@@ -42,8 +42,12 @@ nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
 # Ensure model uses CPU instead of GPU in Streamlit Cloud
-device = "cpu"  # Enforce CPU usage
-embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2", device=device)
+embeddings = HuggingFaceInferenceAPIEmbeddings(
+    api_key=st.secrets["auth_key"],model_name="all-MiniLM-L6-v2")
+
+llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
+                     huggingface_api_key=st.secrets["auth_key"],
+                     model_kwargs={"temperature": 0.7, "max_new_tokens": 256})
 
 # Alternatively, if using SentenceTransformer directly:
 from sentence_transformers import SentenceTransformer
