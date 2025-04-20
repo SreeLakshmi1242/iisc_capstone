@@ -1,19 +1,17 @@
 import os
 from pathlib import Path
-
 import streamlit as st
 import asyncio
 import nest_asyncio
 from transformers import logging, pipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.embeddings import SpacyEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain.chains import ConversationalRetrievalChain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.memory import ConversationSummaryBufferMemory
+from sentence_transformers import SentenceTransformer
 import time
-from langchain_community.llms import HuggingFaceHub  # For cloud deployment
 
 # ----------------------------
 # App Configuration
@@ -31,7 +29,6 @@ os.environ['HF_DATASETS_CACHE'] = str(HF_CACHE_DIR / "datasets")
 os.environ['TRANSFORMERS_CACHE'] = str(HF_CACHE_DIR)
 os.environ['HUGGINGFACE_HUB_CACHE'] = str(HF_CACHE_DIR)
 
-
 import huggingface_hub.constants
 huggingface_hub.constants.HF_HUB_CACHE = str(HF_CACHE_DIR)
 
@@ -47,7 +44,7 @@ llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
                      model_kwargs={"temperature": 0.7, "max_new_tokens": 256})
 
 # Alternatively, if using SentenceTransformer directly:
-from sentence_transformers import SentenceTransformer
+device = 'cpu'  # Set to CPU for cloud usage
 model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
 
 # ----------------------------
@@ -132,9 +129,6 @@ if uploaded_file is not None:
         shutil.rmtree("faiss_index")
 
     # Load documents based on file type
-    from langchain.document_loaders import TextLoader, PyPDFLoader
-    from langchain.text_splitter import CharacterTextSplitter
-
     if uploaded_file.name.endswith(".txt"):
         loader = TextLoader(file_path)
         documents = loader.load()
@@ -193,8 +187,6 @@ qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, m
 # ----------------------------
 # NLP Pipelines
 # ----------------------------
-
-# Load model with neutral detection (3-class)
 sentiment_pipe = pipeline(
     "sentiment-analysis",
     model="cardiffnlp/twitter-roberta-base-sentiment-latest",
@@ -221,7 +213,6 @@ for msg in st.session_state.messages:
 # Handle new user input
 user_input = st.chat_input("Say something...")
 if user_input and st.session_state.display_stage == 0:
-    # Process sentiment and intent
     sentiment_result = sentiment_pipe(user_input)[0]
     sentiment_label = sentiment_result['label']
     sentiment_emoji = {"POSITIVE": "😄", "NEGATIVE": "😞", "NEUTRAL": "😐"}.get(sentiment_label.upper(), "💬")
@@ -230,68 +221,5 @@ if user_input and st.session_state.display_stage == 0:
     intent_label = intent_result["labels"][0]
     intent_score = round(intent_result["scores"][0] * 100, 2)
 
-    # Store message and move to stage 1
     st.session_state.current_message = {
-        "role": "Customer",
-        "content": user_input,
-        "sentiment": f"{sentiment_label} {sentiment_emoji}",
-        "intent": intent_label,
-        "score": intent_score,
-        "response": None
-    }
-    st.session_state.display_stage = 1
-    st.rerun()
-
-# Handle display stages
-if st.session_state.display_stage == 1:
-    # Show user message only
-    temp_msg = {**st.session_state.current_message}
-    temp_msg['sentiment'] = None
-    display_message(temp_msg)
-    time.sleep(0.5)
-    st.session_state.display_stage = 2
-    st.rerun()
-
-elif st.session_state.display_stage == 2:
-    # Show user message with analysis
-    display_message(st.session_state.current_message, show_analysis=True)
-
-    # Generate response
-    if st.session_state.current_message["response"] is None:
-        with st.spinner("Thinking..."):
-            result = qa_chain.run(st.session_state.current_message["content"])
-            st.session_state.current_message["response"] = result
-    time.sleep(0.5)
-    st.session_state.display_stage = 3
-    st.rerun()
-
-elif st.session_state.display_stage == 3:
-    # Show full conversation
-    display_message(st.session_state.current_message, show_analysis=True)
-
-    # Stream assistant response
-    response_placeholder = st.empty()
-    full_response = ""
-    for word in st.session_state.current_message["response"].split():
-        full_response += word + " "
-        response_placeholder.markdown(
-            f"""
-            <div style='display: flex; justify-content: flex-end;'>
-                <div style='background-color: #F1F0F0; padding: 10px; border-radius: 10px; margin-bottom: 10px; max-width: 60%; text-align: right;'>
-                    <strong>🤖 ChatAgent</strong><br>
-                    <span>{full_response}▌</span>
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        time.sleep(0.03)
-
-    # Finalize and add to history
-    st.session_state.messages.append(st.session_state.current_message)
-    st.session_state.messages.append({
-        "role": "ChatAgent",
-        "content": full_response.strip()
-    })
-    st.session_state.display_stage = 0
-    st.session_state.current_message = None
+        "
