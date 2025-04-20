@@ -8,3 +8,4 @@ faiss-cpu
 pypdf
 asyncio
 nest_asyncio
+Numpy
