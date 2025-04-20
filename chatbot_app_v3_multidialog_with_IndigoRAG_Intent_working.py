@@ -89,17 +89,6 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.memory import ConversationSummaryBufferMemory
 
-
-# Initialize embeddings
-embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-
-# Initialize LLM (replace Ollama)
-llm = HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature": 0.1, "max_length": 200})
-
-# Initialize memory and QA chain
-memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=True)
-qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory)
-
 import time
 from pathlib import Path
 
