@@ -6,3 +6,4 @@ asyncio
 nest_asyncio
 langchain_community
 sentence-transformers
+ollama
