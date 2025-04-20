@@ -1,6 +1,6 @@
 import streamlit as st
 from transformers import pipeline
-from langchain.llms import HuggingFacePipeline  # Correct import
+from langchain.llms import HuggingFacePipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
@@ -10,6 +10,15 @@ from langchain.memory import ConversationSummaryBufferMemory
 import os
 import time
 import nest_asyncio
+import numpy as np
+
+# Custom Embedding Class to Ensure Embeddings are in np.ndarray
+class CustomHuggingFaceEmbeddings(HuggingFaceEmbeddings):
+    def embed_documents(self, texts):
+        embeddings = super().embed_documents(texts)
+        # Ensure embeddings are in np.ndarray format (if not already)
+        embeddings = np.asarray(embeddings)
+        return embeddings
 
 # ----------------------------
 # Streamlit Setup and App Configuration
@@ -74,7 +83,7 @@ if uploaded_file is not None:
     chunks = splitter.split_documents(documents)
 
     # Embed and save FAISS index
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = CustomHuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")  # Use custom embeddings class
     vectordb = FAISS.from_documents(chunks, embeddings)
     vectordb.save_local("faiss_index")
 
@@ -89,7 +98,7 @@ try:
     if not os.path.exists(FAISS_INDEX_PATH):
         raise FileNotFoundError(f"FAISS index directory not found at {FAISS_INDEX_PATH}")
     
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = CustomHuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")  # Use custom embeddings class
     vectordb = FAISS.load_local(FAISS_INDEX_PATH, embeddings, allow_dangerous_deserialization=True)
     st.sidebar.success("✅ Loaded existing FAISS index")
 except Exception as e:
@@ -99,7 +108,7 @@ except Exception as e:
     documents = loader.load()
     splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     chunks = splitter.split_documents(documents)
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = CustomHuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")  # Use custom embeddings class
     vectordb = FAISS.from_documents(chunks, embeddings)
     vectordb.save_local(FAISS_INDEX_PATH)
     st.sidebar.info("Created new FAISS index from sample documents")
