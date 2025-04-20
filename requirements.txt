@@ -1,7 +1,6 @@
-streamlit==1.44.1
-transformers==4.21.0
-langchain-community==0.3.21
-huggingface_hub[hf_xet]
-faiss-cpu==1.7.0
+streamlit
+langchain
+sentence-transformers
+faiss-cpu==1.7.4.post2
+tokenizers==0.13.3
 numpy
-tokenizers==0.11.6  # A slightly older version
