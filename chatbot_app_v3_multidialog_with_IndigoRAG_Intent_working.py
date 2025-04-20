@@ -225,5 +225,10 @@ if user_input and st.session_state.display_stage == 0:
     intent_label = intent_result["labels"][0]
     intent_score = round(intent_result["scores"][0] * 100, 2)
 
-    st.session_state.current_message = {
-        "
+        st.session_state.messages.append(st.session_state.current_message)
+    st.session_state.messages.append({
+        "role": "ChatAgent",
+        "content": full_response.strip()
+    })
+    st.session_state.display_stage = 0
+    st.session_state.current_message = None
