@@ -1,6 +1,9 @@
 streamlit
+transformers
 langchain
-sentence-transformers
-faiss-cpu==1.7.4
-tokenizers==0.13.3
+langchain-community
+torch
+faiss-cpu
+nest_asyncio
 numpy
+PyPDF2
