@@ -4,3 +4,4 @@ langchain-community==0.3.21
 huggingface_hub[hf_xet]
 faiss-cpu==1.7.0
 numpy
+tokenizers==0.11.6  # A slightly older version
