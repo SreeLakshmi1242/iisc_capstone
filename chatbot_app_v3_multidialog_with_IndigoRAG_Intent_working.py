@@ -6,7 +6,7 @@ import asyncio
 import nest_asyncio
 from transformers import logging, pipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.embeddings import HuggingFaceInstructEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from langchain_community.embeddings import SpacyEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
@@ -41,7 +41,7 @@ nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
 # Ensure model uses CPU instead of GPU in Streamlit Cloud
-embeddings = HuggingFaceEmbeddings(
+embeddings = HuggingFaceInferenceAPIEmbeddings(
     api_key=st.secrets["auth_key"],model_name="all-MiniLM-L6-v2")
 
 llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
