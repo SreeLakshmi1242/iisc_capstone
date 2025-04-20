@@ -6,6 +6,7 @@ import asyncio
 import nest_asyncio
 from transformers import logging, pipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceInstructEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain.chains import ConversationalRetrievalChain
@@ -30,8 +31,6 @@ os.environ['HF_DATASETS_CACHE'] = str(HF_CACHE_DIR / "datasets")
 os.environ['TRANSFORMERS_CACHE'] = str(HF_CACHE_DIR)
 os.environ['HUGGINGFACE_HUB_CACHE'] = str(HF_CACHE_DIR)
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 
 import huggingface_hub.constants
 huggingface_hub.constants.HF_HUB_CACHE = str(HF_CACHE_DIR)
@@ -41,15 +40,7 @@ nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
 # Initialize components
-embeddings = HuggingFaceEmbeddings(
-    model_name="all-MiniLM-L6-v2",
-    model_kwargs={'device': 'cpu'}
-)
-
-# Initialize LLM for Streamlit Community Cloud (using HuggingFaceHub)
-llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
-                     huggingfacehub_api_token=st.secrets["auth_key"],
-                     model_kwargs={"temperature": 0.7, "max_new_tokens": 256})
+embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
 
 # ----------------------------
 # Helper Functions
