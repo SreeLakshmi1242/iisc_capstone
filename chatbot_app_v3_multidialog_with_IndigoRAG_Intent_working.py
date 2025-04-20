@@ -29,8 +29,13 @@ embeddings = HuggingFaceInferenceAPIEmbeddings(
 )
 
 # LLM Pipeline (text generation)
-huggingface_pipe = pipeline("text-generation", model="gpt2", use_auth_token=hf_api_key)
+huggingface_pipe = pipeline(
+    "text2text-generation",
+    model="google/flan-t5-base",
+    use_auth_token=hf_api_key
+)
 llm = HuggingFacePipeline(pipeline=huggingface_pipe)
+
 
 # ----------------------------
 # Session State Initialization
