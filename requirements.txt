@@ -2,7 +2,7 @@ streamlit
 transformers
 langchain-community
 huggingface-hub
-sentence-transformers==2.2.2
+sentence-transformers
 torch==2.2.0
 faiss-cpu
 pypdf
