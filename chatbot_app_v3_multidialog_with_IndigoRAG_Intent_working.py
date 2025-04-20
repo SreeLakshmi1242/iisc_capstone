@@ -1,7 +1,7 @@
 import streamlit as st
 from transformers import pipeline
 from langchain_community.llms import HuggingFacePipeline  # Updated import from langchain_community
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
@@ -13,15 +13,7 @@ import nest_asyncio
 import numpy as np
 
 # Custom Embedding Class to Ensure Embeddings are in np.ndarray
-class CustomHuggingFaceEmbeddings(HuggingFaceEmbeddings):
-    def embed_documents(self, texts):
-        embeddings = super().embed_documents(texts)
-        # Convert torch tensors to numpy if needed
-        embeddings = np.asarray([
-            emb.numpy() if hasattr(emb, 'numpy') else emb
-            for emb in embeddings
-        ])
-        return embeddings
+
 
 
 # ----------------------------
@@ -33,6 +25,9 @@ st.title("🤖 Chat with Your Documents (Locally)")
 # Configure Hugging Face authentication
 hf_api_key = st.secrets["auth_key"]  # Retrieve Hugging Face API key from Streamlit secrets
 
+embeddings = HuggingFaceInferenceAPIEmbeddings(
+    api_key=hf_api_key, model_name="mixedbread-ai/mxbai-embed-large-v1"
+)
 # ----------------------------
 # Initialize Hugging Face LLM
 # ----------------------------
