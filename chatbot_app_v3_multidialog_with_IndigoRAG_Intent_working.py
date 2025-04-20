@@ -16,12 +16,13 @@ import numpy as np
 class CustomHuggingFaceEmbeddings(HuggingFaceEmbeddings):
     def embed_documents(self, texts):
         embeddings = super().embed_documents(texts)
-        # Ensure all outputs are numpy arrays and handle tensors properly
-        if hasattr(embeddings[0], 'numpy'):
-            embeddings = np.asarray([emb.numpy() for emb in embeddings])
-        else:
-            embeddings = np.asarray(embeddings)
+        # Convert torch tensors to numpy if needed
+        embeddings = np.asarray([
+            emb.numpy() if hasattr(emb, 'numpy') else emb
+            for emb in embeddings
+        ])
         return embeddings
+
 
 # ----------------------------
 # Streamlit Setup and App Configuration
