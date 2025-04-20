@@ -41,7 +41,10 @@ nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
 # Initialize components
-embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+embeddings = HuggingFaceEmbeddings(
+    model_name="all-MiniLM-L6-v2",
+    model_kwargs={'device': 'cpu'}
+)
 
 # Initialize LLM for Streamlit Community Cloud (using HuggingFaceHub)
 llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
