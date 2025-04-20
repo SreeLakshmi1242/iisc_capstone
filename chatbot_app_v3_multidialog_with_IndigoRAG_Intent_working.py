@@ -30,6 +30,9 @@ os.environ['HF_DATASETS_CACHE'] = str(HF_CACHE_DIR / "datasets")
 os.environ['TRANSFORMERS_CACHE'] = str(HF_CACHE_DIR)
 os.environ['HUGGINGFACE_HUB_CACHE'] = str(HF_CACHE_DIR)
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+
 import huggingface_hub.constants
 huggingface_hub.constants.HF_HUB_CACHE = str(HF_CACHE_DIR)
 
