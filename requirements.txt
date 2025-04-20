@@ -1,8 +1,5 @@
-os
 pathlib 
-huggingface_hub
-
-# 3. Now import transformers
+huggingface_hub>=0.21.0
 transformers
 streamlit
 asyncio
