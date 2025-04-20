@@ -8,7 +8,6 @@ from transformers import logging, pipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.embeddings import HuggingFaceInstructEmbeddings
 from langchain_community.embeddings import SpacyEmbeddings
-import spacy
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain.chains import ConversationalRetrievalChain
