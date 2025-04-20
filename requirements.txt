@@ -7,3 +7,4 @@ faiss-cpu
 nest_asyncio
 numpy
 PyPDF2
+sentence-transformers
