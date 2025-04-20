@@ -42,6 +42,7 @@ embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 # Initialize LLM for Streamlit Community Cloud (using HuggingFaceHub)
 llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
+                     huggingface_api_key=st.secrets["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"],
                      model_kwargs={"temperature": 0.7, "max_new_tokens": 256})
 
 # ----------------------------
