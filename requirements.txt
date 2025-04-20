@@ -1,6 +1,6 @@
 streamlit
 langchain
 sentence-transformers
-faiss-cpu==1.7.4.post2
+faiss-cpu==1.7.4
 tokenizers==0.13.3
 numpy
