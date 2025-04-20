@@ -7,7 +7,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationBufferMemory
 
-hf_token = st.secrets["auth_token"]
+hf_token = st.secrets["auth_key"]
 # App title
 st.set_page_config(page_title="Chat with your Documents", layout="wide")
 st.title("📄 Chat with Documents - Local LLM + FAISS")
