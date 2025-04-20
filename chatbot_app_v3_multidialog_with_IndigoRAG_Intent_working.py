@@ -1,107 +1,37 @@
-# import os
-# from pathlib import Path
-
-# #Added Comment - Pankaj
-
-# # 1. Set ALL possible cache locations (new HuggingFace versions need this)
-# cache_dir = Path("D:/huggingface_cache")
-# cache_dir.mkdir(exist_ok=True, parents=True)
-
-# os.environ['HF_HOME'] = str(cache_dir)
-# os.environ['HF_DATASETS_CACHE'] = str(cache_dir / "datasets")
-# os.environ['TRANSFORMERS_CACHE'] = str(cache_dir)
-# os.environ['HUGGINGFACE_HUB_CACHE'] = str(cache_dir)
-
-# # 2. Patch the cache before any imports (critical!)
-# import huggingface_hub.constants
-# huggingface_hub.constants.HF_HUB_CACHE = str(cache_dir)
-
-# # 3. Now import transformers
-# from transformers import pipeline
-
-
-# import streamlit as st
-# import asyncio
-# import nest_asyncio
-# from transformers import logging
-# from langchain_community.embeddings import HuggingFaceEmbeddings
-# from langchain_community.vectorstores import FAISS
-# from langchain_community.document_loaders import TextLoader
-# #from langchain_ollama import OllamaLLM
-# from langchain_community.llms import Ollama
-# from langchain.chains import ConversationalRetrievalChain
-# from langchain.text_splitter import CharacterTextSplitter
-# from langchain.memory import ConversationSummaryBufferMemory
-# import time
-# from pathlib import Path
-
-# from transformers import pipeline
-# import streamlit as st
-# import os
-# import asyncio
-# import nest_asyncio
-# from transformers import logging
-# from langchain_community.embeddings import HuggingFaceEmbeddings
-# from langchain_community.vectorstores import FAISS
-# from langchain_community.document_loaders import TextLoader
-# #from langchain_ollama import OllamaLLM
-# from langchain_community.llms import Ollama
-# from langchain.chains import ConversationalRetrievalChain
-# from langchain.text_splitter import CharacterTextSplitter
-# from langchain.memory import ConversationSummaryBufferMemory
-# import time
-# from pathlib import Path
-
-
-
 import os
 from pathlib import Path
-
-#Added Comment - Pankaj
-
-# 1. Set ALL possible cache locations (new HuggingFace versions need this)
-cache_dir = Path("D:/huggingface_cache")
-cache_dir.mkdir(exist_ok=True, parents=True)
-
-os.environ['HF_HOME'] = str(cache_dir)
-os.environ['HF_DATASETS_CACHE'] = str(cache_dir / "datasets")
-os.environ['TRANSFORMERS_CACHE'] = str(cache_dir)
-os.environ['HUGGINGFACE_HUB_CACHE'] = str(cache_dir)
-
-# 2. Patch the cache before any imports (critical!)
-import huggingface_hub.constants
-huggingface_hub.constants.HF_HUB_CACHE = str(cache_dir)
-
-# 3. Now import transformers
-from transformers import pipeline
-
 
 import streamlit as st
 import asyncio
 import nest_asyncio
-from transformers import logging
+from transformers import logging, pipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain_community.document_loaders import TextLoader
-#from langchain_ollama import OllamaLLM
-from langchain_community.llms import Ollama
+from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain.chains import ConversationalRetrievalChain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.memory import ConversationSummaryBufferMemory
-
 import time
-from pathlib import Path
+from langchain_community.llms import HuggingFaceHub  # For cloud deployment
 
-
-# # ----------------------------
+# ----------------------------
 # App Configuration
 # ----------------------------
-st.set_page_config(page_title="Chat with Local LLM", layout="wide")
-st.title("🤖 Chat with Your Documents (Locally)")
-# Configure paths
-FAISS_INDEX_PATH = Path("D:/03-Ollama/Dummy Setup chat LLM bot/faiss_index") # Adjust this path as needed
-os.environ["HF_HOME"] = "D:/huggingface_cache"  # Set before loading pipeline
-os.environ['OLLAMA_MODELS'] = 'D:/ollama_models'  # Stores Ollama models here
+st.set_page_config(page_title="Chat with Documents", layout="wide")
+st.title("🤖 Chat with Your Documents")
+
+# Configure paths (adjust if needed for cloud storage)
+FAISS_INDEX_PATH = Path("./faiss_index")
+HF_CACHE_DIR = Path("./huggingface_cache")
+HF_CACHE_DIR.mkdir(exist_ok=True, parents=True)
+
+os.environ['HF_HOME'] = str(HF_CACHE_DIR)
+os.environ['HF_DATASETS_CACHE'] = str(HF_CACHE_DIR / "datasets")
+os.environ['TRANSFORMERS_CACHE'] = str(HF_CACHE_DIR)
+os.environ['HUGGINGFACE_HUB_CACHE'] = str(HF_CACHE_DIR)
+
+import huggingface_hub.constants
+huggingface_hub.constants.HF_HUB_CACHE = str(HF_CACHE_DIR)
 
 # Fix Streamlit event loop
 nest_asyncio.apply()
@@ -109,7 +39,10 @@ logging.set_verbosity_error()  # Reduce warnings
 
 # Initialize components
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-llm = Ollama(model="mistral")  # Updated Ollama class
+
+# Initialize LLM for Streamlit Community Cloud (using HuggingFaceHub)
+llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
+                     model_kwargs={"temperature": 0.7, "max_new_tokens": 256})
 
 # ----------------------------
 # Helper Functions
@@ -118,7 +51,7 @@ def display_message(msg, show_analysis=False):
     """Helper function to display messages with proper formatting"""
     avatars = {"Customer": "🙋", "ChatAgent": "🤖"}
     colors = {"Customer": "#DCF8C6", "ChatAgent": "#F1F0F0"}
-    
+
     if msg['role'] == "Customer":
         st.markdown(
             f"""
@@ -130,7 +63,7 @@ def display_message(msg, show_analysis=False):
             """,
             unsafe_allow_html=True
         )
-        
+
         if show_analysis and 'sentiment' in msg:
             st.markdown(
                 f"""
@@ -141,9 +74,9 @@ def display_message(msg, show_analysis=False):
                 """,
                 unsafe_allow_html=True
             )
-        
+
         st.markdown("</div>", unsafe_allow_html=True)
-        
+
     elif msg['role'] == "ChatAgent":
         st.markdown(
             f"""
@@ -186,10 +119,11 @@ if uploaded_file is not None:
     file_path = f"temp_uploads/{uploaded_file.name}"
     with open(file_path, "wb") as f:
         f.write(uploaded_file.read())
-    
+
     # If FAISS index exists, remove it so we rebuild
     if os.path.exists("faiss_index"):
-        os.system("rm -rf faiss_index")
+        import shutil
+        shutil.rmtree("faiss_index")
 
     # Load documents based on file type
     from langchain.document_loaders import TextLoader, PyPDFLoader
@@ -204,7 +138,7 @@ if uploaded_file is not None:
         # Optional: add source metadata
         for doc in documents:
             doc.metadata["source"] = uploaded_file.name
-    
+
     # Split documents into chunks
     splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     chunks = splitter.split_documents(documents)
@@ -217,37 +151,13 @@ if uploaded_file is not None:
     st.sidebar.success("✅ Document processed and vector DB updated.")
 
 # ----------------------------
-# Model Selector and Setup
-# ----------------------------
-# In your model selection section:
-try:
-    model_choice = st.selectbox("Choose LLM model:", ["mistral", "phi"])
-    
-    # Verify model is available
-    import subprocess
-    result = subprocess.run(["ollama", "list"], capture_output=True, text=True)
-    if model_choice not in result.stdout:
-        st.warning(f"Model '{model_choice}' not found. Pulling it now...")
-        subprocess.run(["ollama", "pull", model_choice], check=True)
-    
-    llm = Ollama(model=model_choice)
-    
-except subprocess.CalledProcessError as e:
-    st.error(f"Failed to setup Ollama: {e}")
-    st.error("Make sure Ollama is installed and running (run 'ollama serve')")
-    st.stop()
-except Exception as e:
-    st.error(f"Error initializing LLM: {e}")
-    st.stop()
-
-# ----------------------------
 # Embedding & Retrieval
 # ----------------------------
 # Load or create vector store
 try:
     if not FAISS_INDEX_PATH.exists():
         raise FileNotFoundError(f"FAISS index directory not found at {FAISS_INDEX_PATH}")
-    
+
     embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     vectordb = FAISS.load_local(
         FAISS_INDEX_PATH,
@@ -255,11 +165,11 @@ try:
         allow_dangerous_deserialization=True
     )
     st.sidebar.success("✅ Loaded existing FAISS index")
-    
+
 except Exception as e:
     st.error(f"Error loading FAISS index: {str(e)}")
     st.info("Will create a new index from sample documents...")
-    
+
     # Fallback: Create new index from sample documents
     loader = TextLoader("sample_docs.txt")
     documents = loader.load()
@@ -280,57 +190,20 @@ qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, m
 
 # Load model with neutral detection (3-class)
 sentiment_pipe = pipeline(
-    "sentiment-analysis", 
+    "sentiment-analysis",
     model="cardiffnlp/twitter-roberta-base-sentiment-latest",
     tokenizer="cardiffnlp/twitter-roberta-base-sentiment-latest"
 )
 
-# Example output:
-result = sentiment_pipe("Can I bring my pet on board?")
-print(result)
-# [{'label': 'neutral', 'score': 0.89}]  <-- Now detects neutral!
-
-
-# Intent pipeline
-# Use a model fine-tuned on customer service dialogues
-# 2. Initialize the pipeline (cached for performance)
-
-
-# @st.cache_resource
-# def load_intent_pipeline():
-#     return pipeline(
-#         "text-classification",
-#         model="joeddav/xlm-roberta-large-xnli",
-#         device=0 if st.session_state.get('use_gpu', False) else -1
-#     )
-
-
-# # 3. Improved intent detection function
-# def detect_intent(text):
-#     intent_labels = [
-#         "flight_delay", "cancellation", "booking_help",
-#         "baggage_issue", "special_request", "general_inquiry"
-#     ] 
-    
-#     result = load_intent_pipeline()(text, candidate_labels=intent_labels)
-#     return {
-#         'intent': result['labels'][0],
-#         'confidence': round(result['scores'][0] * 100, 2),
-#         'sentiment': analyze_sentiment(text)  # Your existing sentiment function
-#     }
-
-
 intent_pipe = pipeline("zero-shot-classification")
-#intent_labels = ["ask_info", "greeting", "travel_help", "cancel_request", "fare_inquiry"]
-
 intent_labels = ['Billing issues', 'Loyalty Program & Miles', 'Flight booking',
-       'Child and Infant Travel', 'Meal and Dietary Preferences',
-       'Flight rescheduling', 'Lost and found', 'Pet travel policy',
-       'Check-in issues', 'Refund policy',
-       'Emergency Situations and Medical Assistance', 'Seat selection',
-       'Cabin Baggage Restrictions', 'Flight cancellation',
-       'Group Booking Discounts', 'Luggage Rules & Allowances',
-       'Baggage issues']
+                 'Child and Infant Travel', 'Meal and Dietary Preferences',
+                 'Flight rescheduling', 'Lost and found', 'Pet travel policy',
+                 'Check-in issues', 'Refund policy',
+                 'Emergency Situations and Medical Assistance', 'Seat selection',
+                 'Cabin Baggage Restrictions', 'Flight cancellation',
+                 'Group Booking Discounts', 'Luggage Rules & Allowances',
+                 'Baggage issues']
 
 # ----------------------------
 # Main Chat Interface
@@ -346,12 +219,10 @@ if user_input and st.session_state.display_stage == 0:
     sentiment_result = sentiment_pipe(user_input)[0]
     sentiment_label = sentiment_result['label']
     sentiment_emoji = {"POSITIVE": "😄", "NEGATIVE": "😞", "NEUTRAL": "😐"}.get(sentiment_label.upper(), "💬")
-    
+
     intent_result = intent_pipe(user_input, candidate_labels=intent_labels)
     intent_label = intent_result["labels"][0]
     intent_score = round(intent_result["scores"][0] * 100, 2)
-
-    #analysis = detect_intent(user_input)
 
     # Store message and move to stage 1
     st.session_state.current_message = {
@@ -360,7 +231,6 @@ if user_input and st.session_state.display_stage == 0:
         "sentiment": f"{sentiment_label} {sentiment_emoji}",
         "intent": intent_label,
         "score": intent_score,
-        #"intent": f"{analysis['intent']} ({analysis['confidence']}%)",
         "response": None
     }
     st.session_state.display_stage = 1
@@ -379,7 +249,7 @@ if st.session_state.display_stage == 1:
 elif st.session_state.display_stage == 2:
     # Show user message with analysis
     display_message(st.session_state.current_message, show_analysis=True)
-    
+
     # Generate response
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
@@ -392,7 +262,7 @@ elif st.session_state.display_stage == 2:
 elif st.session_state.display_stage == 3:
     # Show full conversation
     display_message(st.session_state.current_message, show_analysis=True)
-    
+
     # Stream assistant response
     response_placeholder = st.empty()
     full_response = ""
@@ -410,7 +280,7 @@ elif st.session_state.display_stage == 3:
             unsafe_allow_html=True
         )
         time.sleep(0.03)
-    
+
     # Finalize and add to history
     st.session_state.messages.append(st.session_state.current_message)
     st.session_state.messages.append({
