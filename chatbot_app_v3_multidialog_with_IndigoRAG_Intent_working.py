@@ -12,6 +12,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.memory import ConversationSummaryBufferMemory
 from sentence_transformers import SentenceTransformer
 import time
+import torch
 
 # ----------------------------
 # App Configuration
@@ -36,20 +37,19 @@ huggingface_hub.constants.HF_HUB_CACHE = str(HF_CACHE_DIR)
 nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
-# Ensure model uses CPU instead of GPU in Streamlit Cloud
-# Explicitly set device to 'cpu'
-device = 'cpu'  # Set to CPU for cloud usage
+# Check if a GPU is available, else default to CPU
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+print(f"Using device: {device}")  # For debugging
+
+# Load the model
 model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
 
-# or if using HuggingFaceEmbeddings
+# Alternatively, if using HuggingFaceEmbeddings
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
-# Load your LLM model
-llm = HuggingFaceHub(
-    repo_id="mistralai/Mistral-7B-Instruct-v0.2",
-    huggingface_api_key=st.secrets["auth_key"],
-    model_kwargs={"temperature": 0.7, "max_new_tokens": 256}
-)
+llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
+                     huggingface_api_key=st.secrets["auth_key"],
+                     model_kwargs={"temperature": 0.7, "max_new_tokens": 256})
 
 # ----------------------------
 # Helper Functions
