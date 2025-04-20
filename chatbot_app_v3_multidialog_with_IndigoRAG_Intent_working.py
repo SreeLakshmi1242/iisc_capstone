@@ -7,6 +7,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationBufferMemory
 
+hf_token = st.secrets["auth_token"]
 # App title
 st.set_page_config(page_title="Chat with your Documents", layout="wide")
 st.title("📄 Chat with Documents - Local LLM + FAISS")
@@ -15,7 +16,7 @@ st.title("📄 Chat with Documents - Local LLM + FAISS")
 st.sidebar.header("Configuration")
 
 # Model selection
-model_name = st.sidebar.selectbox("Select a model", ["HuggingFaceH4/zephyr-7b-alpha", "mistralai/Mistral-7B-Instruct-v0.1"])
+model_name = st.sidebar.selectbox("Select a model", ["HuggingFaceH4/zephyr-7b-alpha", "mistralai/Mistral-7B-Instruct-v0.1"], )
 
 # FAISS folder path
 faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
@@ -23,7 +24,7 @@ faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_i
 # Initialize embedding model
 @st.cache_resource
 def load_embedding():
-    return HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    return HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2",huggingfacehub_api_token=hf_token)
 
 embedding_function = load_embedding()
 
@@ -42,7 +43,7 @@ except Exception as e:
 # Load LLM
 @st.cache_resource
 def load_llm():
-    return HuggingFaceHub(repo_id=model_name, model_kwargs={"temperature": 0.5, "max_new_tokens": 512})
+    return HuggingFaceHub(repo_id=model_name, model_kwargs={"temperature": 0.5, "max_new_tokens": 512},huggingfacehub_api_token=hf_token)
 
 llm = load_llm()
 
