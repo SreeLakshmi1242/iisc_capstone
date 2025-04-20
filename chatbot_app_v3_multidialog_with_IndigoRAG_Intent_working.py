@@ -40,8 +40,7 @@ nest_asyncio.apply()
 logging.set_verbosity_error()  # Reduce warnings
 
 # Ensure model uses CPU instead of GPU in Streamlit Cloud
-embeddings = HuggingFaceEmbeddings(
-    api_key=st.secrets["auth_key"],model_name="all-MiniLM-L6-v2")
+embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 llm = HuggingFaceHub(repo_id="mistralai/Mistral-7B-Instruct-v0.2",
                      huggingface_api_key=st.secrets["auth_key"],
