@@ -1,6 +1,6 @@
 import streamlit as st
 from transformers import pipeline
-from langchain.llms import HuggingFaceLLM  # Import HuggingFaceLLM
+from langchain.llms import HuggingFacePipeline  # Correct import
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
@@ -23,8 +23,9 @@ hf_api_key = st.secrets["auth_key"]  # Retrieve Hugging Face API key from Stream
 # ----------------------------
 # Initialize Hugging Face LLM
 # ----------------------------
-# Initialize Hugging Face model wrapper for text generation (e.g., GPT-2 or any Hugging Face model)
-llm = HuggingFaceLLM(model_name="gpt2", use_auth_token=hf_api_key)  # Use HuggingFaceLLM
+# Initialize Hugging Face pipeline (e.g., GPT-2 or any Hugging Face model)
+huggingface_pipe = pipeline("text-generation", model="gpt2", use_auth_token=hf_api_key)
+llm = HuggingFacePipeline(pipeline=huggingface_pipe)  # Use HuggingFacePipeline
 
 # ----------------------------
 # Session Initialization
