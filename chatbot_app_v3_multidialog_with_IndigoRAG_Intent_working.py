@@ -1,12 +1,13 @@
 import streamlit as st
 from transformers import pipeline
-import os
+from langchain.llms import HuggingFaceLLM  # Import HuggingFaceLLM
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationSummaryBufferMemory
+import os
 import time
 import nest_asyncio
 
@@ -22,8 +23,8 @@ hf_api_key = st.secrets["auth_key"]  # Retrieve Hugging Face API key from Stream
 # ----------------------------
 # Initialize Hugging Face LLM
 # ----------------------------
-# Initialize Hugging Face model pipeline for text generation (e.g., GPT-2 or any Hugging Face model)
-llm = pipeline("text-generation", model="gpt2", use_auth_token=hf_api_key)
+# Initialize Hugging Face model wrapper for text generation (e.g., GPT-2 or any Hugging Face model)
+llm = HuggingFaceLLM(model_name="gpt2", use_auth_token=hf_api_key)  # Use HuggingFaceLLM
 
 # ----------------------------
 # Session Initialization
