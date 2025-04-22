@@ -1,14 +1,17 @@
 import os
 import time
+import torch
 import streamlit as st
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+
 from langchain.chains import ConversationalRetrievalChain
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_huggingface import HuggingFaceEndpoint
-from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationBufferMemory
+from langchain.llms import HuggingFacePipeline
 
 hf_token = st.secrets["auth_key"]
+
 # App title
 st.set_page_config(page_title="Chat with your Documents", layout="wide")
 st.title("📄 Chat with Documents - Local LLM + FAISS")
@@ -17,7 +20,7 @@ st.title("📄 Chat with Documents - Local LLM + FAISS")
 st.sidebar.header("Configuration")
 
 # Model selection
-model_name = st.sidebar.selectbox("Select a model", ["mistralai/Mistral-7B-Instruct-v0.1"], )
+model_name = st.sidebar.selectbox("Select a model", ["mistralai/Mistral-7B-Instruct-v0.1"])
 
 # FAISS folder path
 faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
@@ -25,8 +28,7 @@ faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_i
 # Initialize embedding model
 @st.cache_resource
 def load_embedding():
-    return HuggingFaceEndpoint(model_name="sentence-transformers/all-MiniLM-L6-v2")
-
+    return HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
 embedding_function = load_embedding()
 
@@ -42,10 +44,28 @@ except Exception as e:
     st.error(f"Failed to load FAISS index: {e}")
     st.stop()
 
-# Load LLM
+# Load LLM locally using transformers + HuggingFacePipeline
 @st.cache_resource
 def load_llm():
-    return HuggingFaceHub(repo_id=model_name, model_kwargs={"temperature": 0.5, "max_new_tokens": 512},huggingfacehub_api_token=hf_token)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, token=hf_token)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        torch_dtype=torch.float16,
+        device_map="auto",
+        token=hf_token
+    )
+
+    pipe = pipeline(
+        "text-generation",
+        model=model,
+        tokenizer=tokenizer,
+        max_new_tokens=512,
+        temperature=0.5,
+        do_sample=True,
+        return_full_text=True
+    )
+
+    return HuggingFacePipeline(pipeline=pipe)
 
 llm = load_llm()
 
@@ -59,6 +79,7 @@ qa_chain = ConversationalRetrievalChain.from_llm(
     memory=memory,
     return_source_documents=True
 )
+
 
 # Session state initialization
 if "chat_history" not in st.session_state:
