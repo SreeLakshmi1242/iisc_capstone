@@ -25,7 +25,7 @@ faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_i
 # Initialize embedding model
 @st.cache_resource
 def load_embedding():
-    return HuggingFaceEndpoint(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    return HuggingFaceEndpoint(model_name="sentence-transformers/all-MiniLM-L6-v2",model_kwargs={"token": hf_token})
 
 
 embedding_function = load_embedding()
