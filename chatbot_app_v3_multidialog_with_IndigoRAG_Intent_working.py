@@ -4,6 +4,7 @@ import streamlit as st
 from langchain.chains import ConversationalRetrievalChain
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpoint
 from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationBufferMemory
 
@@ -24,7 +25,8 @@ faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_i
 # Initialize embedding model
 @st.cache_resource
 def load_embedding():
-    return HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    return HuggingFaceEndpoint(model_name="sentence-transformers/all-MiniLM-L6-v2")
+
 
 embedding_function = load_embedding()
 
