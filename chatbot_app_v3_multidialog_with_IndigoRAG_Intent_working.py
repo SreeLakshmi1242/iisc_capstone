@@ -25,9 +25,10 @@ faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_i
 # Initialize embedding model
 @st.cache_resource
 def load_embedding():
-    return HuggingFaceEndpoint(model_name="sentence-transformers/all-MiniLM-L6-v2",model_kwargs={"token": hf_token})
-
-
+    return HuggingFaceEndpoint(
+    model="sentence-transformers/all-MiniLM-L6-v2",  # This should be the model's name or repo_id
+    model_kwargs={"use_auth_token": hf_token})
+    
 embedding_function = load_embedding()
 
 # Load FAISS vector store
