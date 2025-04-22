@@ -27,7 +27,8 @@ faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_i
 def load_embedding():
     return HuggingFaceEndpoint(
     model="sentence-transformers/all-MiniLM-L6-v2",  # This should be the model's name or repo_id
-    model_kwargs={"use_auth_token": hf_token})
+    model_kwargs={"use_auth_token": hf_token},
+    task="sentence-similarity"  )
     
 embedding_function = load_embedding()
 
