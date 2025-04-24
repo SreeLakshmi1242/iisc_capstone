@@ -155,20 +155,20 @@ st.sidebar.button("🪠 Clear Chat", on_click=lambda: st.session_state.update(
 
 # ----------------------------
 # Load or create FAISS index
-if not Path(FAISS_INDEX_PATH).exists():
-    st.info("Creating a new FAISS index from sample_docs.txt")
-    loader = TextLoader("sample_docs.txt")
-    documents = loader.load()
-    splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
-    chunks = splitter.split_documents(documents)
-    vectordb = FAISS.from_documents(chunks, embedding_function)
-    vectordb.save_local(FAISS_INDEX_PATH)
-else:
-    try:
-        vectordb = load_vectorstore(FAISS_INDEX_PATH)  # Make sure this is defined
-    except Exception as e:
-        st.error(f"Error loading FAISS vector store: {e}")
-        st.stop()
+# if not Path(FAISS_INDEX_PATH).exists():
+#     st.info("Creating a new FAISS index from sample_docs.txt")
+#     loader = TextLoader("sample_docs.txt")
+#     documents = loader.load()
+#     splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+#     chunks = splitter.split_documents(documents)
+#     vectordb = FAISS.from_documents(chunks, embedding_function)
+#     vectordb.save_local(FAISS_INDEX_PATH)
+# else:
+try:
+    vectordb = load_vectorstore(faiss_folder)  # Make sure this is defined
+except Exception as e:
+    st.error(f"Error loading FAISS vector store: {e}")
+    st.stop()
 
 # ----------------------------
 # NLP Pipelines
