@@ -194,11 +194,23 @@ except Exception as e:
     st.error(f"Error loading FAISS vector store: {e}")
     st.stop()
 
-st.success("FAISS index loaded successfully!")
+# st.success("FAISS index loaded successfully!")
+
+# Define the custom prompt template
+prompt_template = PromptTemplate.from_template("""
+You are a helpful Indigo airlines assistant. Answer the question using the context provided.
+If the intent is negative, show empathy.
+
+Context:
+{context}
+
+Question: {question}
+Answer:
+""")
 
 retriever = vectordb.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=True)
-qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory)
+qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory,combine_docs_chain_kwargs={"prompt": prompt_template})
 
 # ----------------------------
 # NLP Pipelines
