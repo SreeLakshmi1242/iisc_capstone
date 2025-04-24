@@ -138,7 +138,7 @@ system_instruction = "The assistant should provide detailed explanations."
 
 # Create the prompt template
 condense_question_prompt = PromptTemplate(
-    input_variables=["context", "query"],
+    input_variables=["context", "question"],
     template="""
 You are an airline customer service assistant for IndiGo Airlines.
 
@@ -148,20 +148,20 @@ Context:
 {context}
 
 Question:
-{query}
+{question}
 
 Answer:"""
 )
 
 retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
-# qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
-#                                                  condense_question_prompt=condense_question_prompt,chain_type="stuff")
-qa_chain = RetrievalQA.from_chain_type(
-    llm=llm,
-    retriever=retriever,
-    chain_type="stuff",  # basic stuff chain for one-shot answers
-    chain_type_kwargs={"prompt": condense_question_prompt}
+qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
+                                                 condense_question_prompt=condense_question_prompt,chain_type="stuff")
+# qa_chain = RetrievalQA.from_chain_type(
+#     llm=llm,
+#     retriever=retriever,
+#     chain_type="stuff",  # basic stuff chain for one-shot answers
+#     chain_type_kwargs={"prompt": condense_question_prompt}
 )
 
 
@@ -226,7 +226,7 @@ elif st.session_state.display_stage == 2:
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
             result = qa_chain({
-    "query": st.session_state.current_message["content"],
+    "question": st.session_state.current_message["content"],
     "chat_history": chat_history})
             st.session_state.current_message["response"] = result['answer']
 
