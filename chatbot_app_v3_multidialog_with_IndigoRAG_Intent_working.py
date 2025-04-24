@@ -18,7 +18,6 @@ st.sidebar.header("Configuration")
 
 # Model selection
 model_name = st.sidebar.selectbox("Select a model", [
-    "google/flan-t5-large",
     "HuggingFaceH4/zephyr-7b-beta"
 ])
 
