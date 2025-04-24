@@ -36,8 +36,13 @@ embedding_function = load_embedding()
 # Load FAISS vector store
 @st.cache_resource
 def load_vectorstore(path):
-    return FAISS.load_local(path, embeddings=embedding_function, allow_dangerous_deserialization=True)
+    try:
+        return FAISS.load_local(path, embeddings=embedding_function, allow_dangerous_deserialization=True)
+    except Exception as e:
+        st.error(f"Failed to load FAISS index: {e}")
+        st.stop()
 
+# Try loading FAISS vector store
 try:
     db = load_vectorstore(FAISS_INDEX_PATH)
     retriever = db.as_retriever()
@@ -183,9 +188,11 @@ intent_labels = [
 # ----------------------------
 # Main Chat Interface
 # ----------------------------
+# Display previous messages
 for msg in st.session_state.messages:
     display_message(msg, show_analysis=(msg['role'] == 'Customer'))
 
+# Handle new user input
 user_input = st.chat_input("Say something...")
 if user_input and st.session_state.display_stage == 0:
     sentiment_result = sentiment_pipe(user_input)[0]
@@ -219,32 +226,4 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            result = qa_chain.run(st.session_state.current_message["content"])
-            st.session_state.current_message["response"] = result
-    time.sleep(0.5)
-    st.session_state.display_stage = 3
-    st.rerun()
-
-elif st.session_state.display_stage == 3:
-    display_message(st.session_state.current_message, show_analysis=True)
-    response_placeholder = st.empty()
-    full_response = ""
-    for word in st.session_state.current_message["response"].split():
-        full_response += word + " "
-        response_placeholder.markdown(
-            f"""
-            <div style='display: flex; justify-content: flex-end;'>
-                <div style='background-color: #F1F0F0; padding: 10px; border-radius: 10px; margin-bottom: 10px; max-width: 60%; text-align: right;'>
-                    <strong>🤖 ChatAgent</strong><br>
-                    <span>{full_response}▌</span>
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        time.sleep(0.03)
-
-    st.session_state.messages.append(st.session_state.current_message)
-    st.session_state.messages.append({"role": "ChatAgent", "content": full_response.strip()})
-    st.session_state.display_stage = 0
-    st.session_state.current_message = None
+            result = qa_chain.run(st.session_state.current
