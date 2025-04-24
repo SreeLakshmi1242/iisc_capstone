@@ -55,9 +55,6 @@ def load_llm():
 
 llm = load_llm()
 
-# Memory
-# memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-
 # Build Conversational Chain
 def display_message(msg, show_analysis=False):
     """Helper function to display messages with proper formatting"""
@@ -122,13 +119,17 @@ if "current_message" not in st.session_state:
 # Function to clean assistant's response
 def clean_response(response):
     """Clean the assistant's response to remove unnecessary context or prompt rules"""
-    # Example rule removal, you can further improve this based on specific patterns
-    response = response.replace("Context:", "").replace("Question:", "").replace("Answer:", "").strip()
-    return response
+    # Remove any unwanted content like dates, URLs, and other irrelevant text
+    clean_content = ' '.join(response.splitlines())  # Remove newlines
+    clean_content = ' '.join([word for word in clean_content.split() if not word.startswith("http")])  # Remove URLs
+    # Remove irrelevant sections such as "FAQs", "Terms", "Privacy Policy", etc.
+    clean_content = ' '.join([word for word in clean_content.split() if word.lower() not in ['faq', 'terms', 'cookie', 'privacy', 'disclaimer']])
+    
+    return clean_content.strip()
 
 # Define the custom prompt template
 prompt_template = PromptTemplate.from_template("""
-You are a helpful Indigo airlines assistant. Answer the question using the context provided.
+You are a helpful assistant. Please provide concise answers without including disclaimers, terms, or irrelevant notices.
 If the intent is negative, show empathy.
 
 Context:
