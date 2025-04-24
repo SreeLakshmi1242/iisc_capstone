@@ -193,6 +193,9 @@ except Exception as e:
     st.error(f"Error loading FAISS vector store: {e}")
     st.stop()
 
+st.success("FAISS index loaded successfully!")
+
+
 # ----------------------------
 # NLP Pipelines
 # ----------------------------
