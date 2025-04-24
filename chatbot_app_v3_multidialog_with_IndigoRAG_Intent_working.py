@@ -122,15 +122,21 @@ def clean_response(response):
 
 system_instruction = "The assistant should provide detailed explanations."
 # Define the custom prompt template
-template = (
-    f"{system_instruction} "
-    "Combine the chat history and follow up question into "
-    "a standalone question. Chat History: {chat_history}"
-    "Follow up question: {question}"
-)
+template =="""
+You are a helpful assistant. Use the context below to answer the question.
+Only answer using the information provided.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Answer:
+"""
 
 # Create the prompt template
-condense_question_prompt = PromptTemplate.from_template(template)
+condense_question_prompt = PromptTemplate( input_variables=["context", "question"],template)
 
 retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
