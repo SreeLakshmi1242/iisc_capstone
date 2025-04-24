@@ -2,6 +2,7 @@ import os
 import time
 import streamlit as st
 from pathlib import Path
+from transformers import pipeline
 from langchain.chains import ConversationalRetrievalChain
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
