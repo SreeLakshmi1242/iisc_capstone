@@ -57,62 +57,45 @@ llm = load_llm()
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 
 # Build Conversational Chain
-qa_chain = ConversationalRetrievalChain.from_llm(
-    llm=llm,
-    retriever=retriever,
-    memory=memory,
-    return_source_documents=False,
-    output_key="answer"
-)
-
-
-
-# Session state initialization
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
-
-if "display_stage" not in st.session_state:
-    st.session_state.display_stage = 1
-
-if "current_message" not in st.session_state:
-    st.session_state.current_message = {"content": "", "response": ""}
-
-# Chat UI
-st.subheader("Chat Interface")
-user_input = st.chat_input("Ask a question about your documents")
-
-if user_input:
-    st.session_state.current_message = {"content": user_input, "response": ""}
-    st.session_state.display_stage = 2
-
-# Display chat history
-for chat in st.session_state.chat_history:
-    with st.chat_message("user"):
-        st.markdown(chat[0])
-    with st.chat_message("assistant"):
-        st.markdown(chat[1])
-
-# Handle response
-if st.session_state.display_stage == 2:
-    with st.chat_message("user"):
-        st.markdown(st.session_state.current_message["content"])
-
-    with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
-            try:
-                response = qa_chain.invoke({"question": st.session_state.current_message["content"]})
-                answer = response.get("answer", "No answer generated.")
-                st.session_state.current_message["response"] = answer
-            except Exception as e:
-                st.error(f"Error during response generation: {e}")
-                st.session_state.current_message["response"] = ""
-
-        st.markdown(st.session_state.current_message["response"])
-
-    # Store chat
-    st.session_state.chat_history.append([
-        st.session_state.current_message["content"],
-        st.session_state.current_message["response"]
-    ])
-    time.sleep(0.5)
-    st.session_state.display_stage = 3
+def display_message(msg, show_analysis=False):
+    """Helper function to display messages with proper formatting"""
+    avatars = {"Customer": "🙋", "ChatAgent": "🤖"}
+    colors = {"Customer": "#DCF8C6", "ChatAgent": "#F1F0F0"}
+    
+    if msg['role'] == "Customer":
+        st.markdown(
+            f"""
+            <div style='display: flex; gap: 8px; margin-bottom: 10px;'>
+                <div style='background-color: {colors['Customer']}; padding: 10px; border-radius: 10px; max-width: 45%; text-align: left;'>
+                    <strong>{avatars['Customer']} Customer</strong><br>
+                    <span>{msg['content']}</span>
+                </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+        if show_analysis and 'sentiment' in msg:
+            st.markdown(
+                f"""
+                <div style='background-color: #f0f0f0; padding: 10px; border-radius: 10px; font-size: 14px; max-width: 35%; min-width: 150px;'>
+                    <strong>🧠 Sentiment:</strong> {msg.get('sentiment', '')}<br>
+                    <strong>🎯 Intent:</strong> {msg.get('intent', '')} {f"({msg.get('score', '')}%)" if msg.get('score') else ''}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+        
+    elif msg['role'] == "ChatAgent":
+        st.markdown(
+            f"""
+            <div style='display: flex; justify-content: flex-end; margin-bottom: 10px;'>
+                <div style='background-color: {colors['ChatAgent']}; padding: 10px; border-radius: 10px; max-width: 60%; text-align: right;'>
+                    <strong>{avatars['ChatAgent']} Assistant</strong><br>
+                    <span>{msg['content']}</span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
