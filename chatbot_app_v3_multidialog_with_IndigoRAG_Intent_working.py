@@ -136,7 +136,7 @@ Answer:
 """
 
 # Create the prompt template
-condense_question_prompt = PromptTemplate( input_variables=["context", "question"],template)
+condense_question_prompt = PromptTemplate( input_variables=["context", "question"],template,)
 
 retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
