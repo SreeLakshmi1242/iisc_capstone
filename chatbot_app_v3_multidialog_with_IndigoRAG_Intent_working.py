@@ -193,7 +193,7 @@ elif st.session_state.display_stage == 1:
 
 elif st.session_state.display_stage == 2:
     st.success("T3")
-    display_message(st.session_state.current_message["response"], show_analysis=True)
+    display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
             result = qa_chain.run(st.session_state.current_message["content"])
