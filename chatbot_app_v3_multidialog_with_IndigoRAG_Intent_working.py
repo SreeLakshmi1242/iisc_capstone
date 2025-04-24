@@ -65,9 +65,9 @@ def display_message(msg, show_analysis=False):
         st.markdown(
             f"""
             <div style='display: flex; gap: 8px; margin-bottom: 10px;'>
-                <div style='background-color: {colors['Customer']}; padding: 10px; border-radius: 10px; max-width: 45%; text-align: left;'>
+                <div style='background-color: {colors['Customer']}; padding: 10px; border-radius: 10px; max-width: 45%; text-align: left; color: black;'>
                     <strong>{avatars['Customer']} Customer</strong><br>
-                    <span style='color: black;'>{msg['content']}</span>
+                    <span>{msg['content']}</span>
                 </div>
             """,
             unsafe_allow_html=True
@@ -76,7 +76,7 @@ def display_message(msg, show_analysis=False):
         if show_analysis and 'sentiment' in msg:
             st.markdown(
                 f"""
-                <div style='background-color: #f0f0f0; padding: 10px; border-radius: 10px; font-size: 14px; max-width: 35%; min-width: 150px;'>
+                <div style='background-color: #f0f0f0; padding: 10px; border-radius: 10px; font-size: 14px; max-width: 35%; min-width: 150px; color: black;'>
                     <strong>🧠 Sentiment:</strong> {msg.get('sentiment', '')}<br>
                     <strong>🎯 Intent:</strong> {msg.get('intent', '')} {f"({msg.get('score', '')}%)" if msg.get('score') else ''}
                 </div>
@@ -90,9 +90,9 @@ def display_message(msg, show_analysis=False):
         st.markdown(
             f"""
             <div style='display: flex; justify-content: flex-end; margin-bottom: 10px;'>
-                <div style='background-color: {colors['ChatAgent']}; padding: 10px; border-radius: 10px; max-width: 60%; text-align: right;'>
+                <div style='background-color: {colors['ChatAgent']}; padding: 10px; border-radius: 10px; max-width: 60%; text-align: right; color: black;'>
                     <strong>{avatars['ChatAgent']} Assistant</strong><br>
-                    <span style='color: black;'>{msg['content']}</span>
+                    <span>{msg['content']}</span>
                 </div>
             </div>
             """,
@@ -193,7 +193,7 @@ elif st.session_state.display_stage == 1:
 
 elif st.session_state.display_stage == 2:
     st.success("T3")
-    display_message(st.session_state.current_message, show_analysis=True)
+    display_message(st.session_state.current_message["content"], show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
             result = qa_chain.run(st.session_state.current_message["content"])
