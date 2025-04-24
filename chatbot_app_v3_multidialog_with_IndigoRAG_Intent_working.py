@@ -10,6 +10,7 @@ from langchain_huggingface import HuggingFaceEndpoint
 from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationSummaryBufferMemory
 from langchain.prompts import PromptTemplate
+from langchain.chains import RetrievalQA
 
 hf_token = st.secrets["auth_key"]
 # App title
