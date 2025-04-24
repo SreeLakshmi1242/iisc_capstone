@@ -188,7 +188,7 @@ if "current_message" not in st.session_state:
 #     vectordb.save_local(FAISS_INDEX_PATH)
 # else:
 try:
-    vectordb = load_vectorstore(faiss_folder)  # Make sure this is defined
+    vectordb = load_vectorstore()  # Make sure this is defined
 except Exception as e:
     st.error(f"Error loading FAISS vector store: {e}")
     st.stop()
