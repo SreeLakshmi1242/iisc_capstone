@@ -226,4 +226,5 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            result = qa_chain.run(st.session_state.current
+            result = qa_chain.run(st.session_state.current_message["content"])
+            st.session_state.current_message["response"] = result
