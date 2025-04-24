@@ -204,8 +204,8 @@ elif st.session_state.display_stage == 2:
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
             result = qa_chain(st.session_state.current_message["content"])
-            cleaned_response = clean_response(result)  # Clean the response
-            st.session_state.current_message["response"] = cleaned_response
+            # cleaned_response = clean_response(result)  # Clean the response
+            st.session_state.current_message["response"] = result
 
             # Append both messages
             st.session_state.messages.append({
