@@ -59,43 +59,48 @@ llm = load_llm()
 def display_message(msg, show_analysis=False):
     """Helper function to display messages with proper formatting"""
     avatars = {"Customer": "🙋", "ChatAgent": "🤖"}
-    colors = {"Customer": "#DCF8C6", "ChatAgent": "#F1F0F0"}
-    
+    colors = {"Customer": "#DCF8C6", "ChatAgent": "#F1F0F0"} # Keep your desired background colors
+
     if msg['role'] == "Customer":
         st.markdown(
             f"""
             <div style='display: flex; gap: 8px; margin-bottom: 10px;'>
-                <div style='background-color: {colors['Customer']}; padding: 10px; border-radius: 10px; max-width: 45%; text-align: left;'>
+                <div style='background-color: {colors['Customer']}; padding: 10px; border-radius: 10px; max-width: 45%; text-align: left; color: black;'> {/* Added color: black; */}
                     <strong>{avatars['Customer']} Customer</strong><br>
                     <span>{msg['content']}</span>
                 </div>
             """,
             unsafe_allow_html=True
         )
-        
+
         if show_analysis and 'sentiment' in msg:
             st.markdown(
                 f"""
-                <div style='background-color: #f0f0f0; padding: 10px; border-radius: 10px; font-size: 14px; max-width: 35%; min-width: 150px;'>
+                <div style='background-color: #f0f0f0; padding: 10px; border-radius: 10px; font-size: 14px; max-width: 35%; min-width: 150px; color: black;'> {/* Added color: black; */}
                     <strong>🧠 Sentiment:</strong> {msg.get('sentiment', '')}<br>
                     <strong>🎯 Intent:</strong> {msg.get('intent', '')} {f"({msg.get('score', '')}%)" if msg.get('score') else ''}
                 </div>
                 """,
                 unsafe_allow_html=True
             )
-        
+
         st.markdown("</div>", unsafe_allow_html=True)
-        
+
     elif msg['role'] == "ChatAgent":
+        clean_content = msg['content']
+
+        # Clean URLs and irrelevant text from the response
+        clean_content = ' '.join(clean_content.splitlines())  # Remove newlines
+        clean_content = ' '.join([word for word in clean_content.split() if not word.startswith("http")])  # Remove URLs
+        clean_content = ' '.join([word for word in clean_content.split() if word not in ['FAQs', 'Page', 'of', 'at', 'site', 'map', 'terms', 'cookie', 'disclaimer']])  # Remove common irrelevant words
+
         st.markdown(
             f"""
             <div style='display: flex; justify-content: flex-end; margin-bottom: 10px;'>
-                <div style='background-color: {colors['ChatAgent']}; padding: 10px; border-radius: 10px; max-width: 60%; text-align: right;'>
+                <div style='background-color: {colors['ChatAgent']}; padding: 10px; border-radius: 10px; max-width: 60%; text-align: right; color: black;'> {/* Added color: black; */}
                     <strong>{avatars['ChatAgent']} Assistant</strong><br>
-                    <span>{msg['content']}</span>
+                    <span>{clean_content}</span>
                 </div>
-
-
             </div>
             """,
             unsafe_allow_html=True
