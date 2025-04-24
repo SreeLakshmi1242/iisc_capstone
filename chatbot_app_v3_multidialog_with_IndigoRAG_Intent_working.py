@@ -21,7 +21,7 @@ st.sidebar.header("Configuration")
 
 # Model selection
 model_name = st.sidebar.selectbox("Select a model", [
-    "HuggingFaceH4/zephyr-7b-beta"
+    "mistralai/Mistral-7B-Instruct-v0.1"
 ])
 
 # FAISS folder path
