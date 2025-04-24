@@ -104,22 +104,44 @@ def display_message(msg, show_analysis=False):
             unsafe_allow_html=True
         )
 
+
+def load_vectorstore():
+    embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    vectorstore = FAISS.load_local(persist_path, embeddings=embedding)
+    return vectorstore
+
+# Load on app start
+with st.spinner("Loading FAISS vector store..."):
+    vectorstore = load_vectorstore()
+    st.success("FAISS index loaded successfully!")
+
+# Search box
+query = st.text_input("Ask a question or search your documents:")
+
+# Perform similarity search
+if query:
+    results = vectorstore.similarity_search(query, k=3)
+    st.write("Top matches:")
+    for i, res in enumerate(results, 1):
+        st.markdown(f"**Result {i}:** {res.page_content}")
+
  # ----------------------------
 # State Initialization
 # ----------------------------
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-if "display_stage" not in st.session_state:
-    st.session_state.display_stage = 0
-if "current_message" not in st.session_state:
-    st.session_state.current_message = None
+# if "messages" not in st.session_state:
+#     st.session_state.messages = []
+# if "display_stage" not in st.session_state:
+#     st.session_state.display_stage = 0
+# if "current_message" not in st.session_state:
+#     st.session_state.current_message = None
 
-# ----------------------------
-# Sidebar: Clear and Upload
-# ----------------------------
-st.sidebar.button("🪠 Clear Chat", on_click=lambda: st.session_state.update(
-    messages=[], display_stage=0, current_message=None
-))
+# # ----------------------------
+# # Sidebar: Clear and Upload
+# # ----------------------------
+# st.sidebar.button("🪠 Clear Chat", on_click=lambda: st.session_state.update(
+#     messages=[], display_stage=0, current_message=None
+# ))
+
 
 # st.sidebar.markdown("---")
 # st.sidebar.subheader("📄 Upload New Document (TXT / PDF)")
@@ -165,33 +187,33 @@ st.sidebar.button("🪠 Clear Chat", on_click=lambda: st.session_state.update(
 #     vectordb = FAISS.from_documents(chunks, embedding_function)
 #     vectordb.save_local(FAISS_INDEX_PATH)
 # else:
-try:
-    vectordb = load_vectorstore(faiss_folder)  # Make sure this is defined
-except Exception as e:
-    st.error(f"Error loading FAISS vector store: {e}")
-    st.stop()
+# try:
+#     vectordb = load_vectorstore(faiss_folder)  # Make sure this is defined
+# except Exception as e:
+#     st.error(f"Error loading FAISS vector store: {e}")
+#     st.stop()
 
-# ----------------------------
-# NLP Pipelines
-# ----------------------------
-sentiment_pipe = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest")
+# # ----------------------------
+# # NLP Pipelines
+# # ----------------------------
+# sentiment_pipe = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest")
 
-intent_pipe = pipeline("zero-shot-classification")
-intent_labels = [
-    'Billing issues', 'Loyalty Program & Miles', 'Flight booking',
-    'Child and Infant Travel', 'Meal and Dietary Preferences',
-    'Flight rescheduling', 'Lost and found', 'Pet travel policy',
-    'Check-in issues', 'Refund policy', 'Emergency Situations and Medical Assistance',
-    'Seat selection', 'Cabin Baggage Restrictions', 'Flight cancellation',
-    'Group Booking Discounts', 'Luggage Rules & Allowances', 'Baggage issues'
-]
+# intent_pipe = pipeline("zero-shot-classification")
+# intent_labels = [
+#     'Billing issues', 'Loyalty Program & Miles', 'Flight booking',
+#     'Child and Infant Travel', 'Meal and Dietary Preferences',
+#     'Flight rescheduling', 'Lost and found', 'Pet travel policy',
+#     'Check-in issues', 'Refund policy', 'Emergency Situations and Medical Assistance',
+#     'Seat selection', 'Cabin Baggage Restrictions', 'Flight cancellation',
+#     'Group Booking Discounts', 'Luggage Rules & Allowances', 'Baggage issues'
+# ]
 
-# ----------------------------
-# Main Chat Interface
-# ----------------------------
-# Display previous messages
-for msg in st.session_state.messages:
-    display_message(msg, show_analysis=(msg['role'] == 'Customer'))
+# # ----------------------------
+# # Main Chat Interface
+# # ----------------------------
+# # Display previous messages
+# for msg in st.session_state.messages:
+#     display_message(msg, show_analysis=(msg['role'] == 'Customer'))
 
 # # Handle new user input
 # user_input = st.chat_input("Say something...")
