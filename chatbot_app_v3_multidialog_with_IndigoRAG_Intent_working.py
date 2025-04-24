@@ -110,30 +110,30 @@ def load_vectorstore():
     vectorstore = FAISS.load_local(faiss_folder, embeddings=embedding, allow_dangerous_deserialization=True)
     return vectorstore
 
-# Load on app start
-with st.spinner("Loading FAISS vector store..."):
-    vectorstore = load_vectorstore()
-    st.success("FAISS index loaded successfully!")
+# # Load on app start
+# with st.spinner("Loading FAISS vector store..."):
+#     vectorstore = load_vectorstore()
+#     st.success("FAISS index loaded successfully!")
 
-# Search box
-query = st.text_input("Ask a question or search your documents:")
+# # Search box
+# query = st.text_input("Ask a question or search your documents:")
 
-# Perform similarity search
-if query:
-    results = vectorstore.similarity_search(query, k=3)
-    st.write("Top matches:")
-    for i, res in enumerate(results, 1):
-        st.markdown(f"**Result {i}:** {res.page_content}")
+# # Perform similarity search
+# if query:
+#     results = vectorstore.similarity_search(query, k=3)
+#     st.write("Top matches:")
+#     for i, res in enumerate(results, 1):
+#         st.markdown(f"**Result {i}:** {res.page_content}")
 
  # ----------------------------
 # State Initialization
 # ----------------------------
-# if "messages" not in st.session_state:
-#     st.session_state.messages = []
-# if "display_stage" not in st.session_state:
-#     st.session_state.display_stage = 0
-# if "current_message" not in st.session_state:
-#     st.session_state.current_message = None
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+if "display_stage" not in st.session_state:
+    st.session_state.display_stage = 0
+if "current_message" not in st.session_state:
+    st.session_state.current_message = None
 
 # # ----------------------------
 # # Sidebar: Clear and Upload
@@ -187,67 +187,67 @@ if query:
 #     vectordb = FAISS.from_documents(chunks, embedding_function)
 #     vectordb.save_local(FAISS_INDEX_PATH)
 # else:
-# try:
-#     vectordb = load_vectorstore(faiss_folder)  # Make sure this is defined
-# except Exception as e:
-#     st.error(f"Error loading FAISS vector store: {e}")
-#     st.stop()
+try:
+    vectordb = load_vectorstore(faiss_folder)  # Make sure this is defined
+except Exception as e:
+    st.error(f"Error loading FAISS vector store: {e}")
+    st.stop()
 
-# # ----------------------------
-# # NLP Pipelines
-# # ----------------------------
-# sentiment_pipe = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest")
+# ----------------------------
+# NLP Pipelines
+# ----------------------------
+sentiment_pipe = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest")
 
-# intent_pipe = pipeline("zero-shot-classification")
-# intent_labels = [
-#     'Billing issues', 'Loyalty Program & Miles', 'Flight booking',
-#     'Child and Infant Travel', 'Meal and Dietary Preferences',
-#     'Flight rescheduling', 'Lost and found', 'Pet travel policy',
-#     'Check-in issues', 'Refund policy', 'Emergency Situations and Medical Assistance',
-#     'Seat selection', 'Cabin Baggage Restrictions', 'Flight cancellation',
-#     'Group Booking Discounts', 'Luggage Rules & Allowances', 'Baggage issues'
-# ]
+intent_pipe = pipeline("zero-shot-classification")
+intent_labels = [
+    'Billing issues', 'Loyalty Program & Miles', 'Flight booking',
+    'Child and Infant Travel', 'Meal and Dietary Preferences',
+    'Flight rescheduling', 'Lost and found', 'Pet travel policy',
+    'Check-in issues', 'Refund policy', 'Emergency Situations and Medical Assistance',
+    'Seat selection', 'Cabin Baggage Restrictions', 'Flight cancellation',
+    'Group Booking Discounts', 'Luggage Rules & Allowances', 'Baggage issues'
+]
 
-# # ----------------------------
-# # Main Chat Interface
-# # ----------------------------
-# # Display previous messages
-# for msg in st.session_state.messages:
-#     display_message(msg, show_analysis=(msg['role'] == 'Customer'))
+# ----------------------------
+# Main Chat Interface
+# ----------------------------
+# Display previous messages
+for msg in st.session_state.messages:
+    display_message(msg, show_analysis=(msg['role'] == 'Customer'))
 
-# # Handle new user input
-# user_input = st.chat_input("Say something...")
-# if user_input and st.session_state.display_stage == 0:
-#     sentiment_result = sentiment_pipe(user_input)[0]
-#     sentiment_label = sentiment_result['label']
-#     sentiment_emoji = {"POSITIVE": "😄", "NEGATIVE": "😞", "NEUTRAL": "😐"}.get(sentiment_label.upper(), "💬")
+# Handle new user input
+user_input = st.chat_input("Say something...")
+if user_input and st.session_state.display_stage == 0:
+    sentiment_result = sentiment_pipe(user_input)[0]
+    sentiment_label = sentiment_result['label']
+    sentiment_emoji = {"POSITIVE": "😄", "NEGATIVE": "😞", "NEUTRAL": "😐"}.get(sentiment_label.upper(), "💬")
 
-#     intent_result = intent_pipe(user_input, candidate_labels=intent_labels)
-#     intent_label = intent_result["labels"][0]
-#     intent_score = round(intent_result["scores"][0] * 100, 2)
+    intent_result = intent_pipe(user_input, candidate_labels=intent_labels)
+    intent_label = intent_result["labels"][0]
+    intent_score = round(intent_result["scores"][0] * 100, 2)
 
-#     st.session_state.current_message = {
-#         "role": "Customer",
-#         "content": user_input,
-#         "sentiment": f"{sentiment_label} {sentiment_emoji}",
-#         "intent": intent_label,
-#         "score": intent_score,
-#         "response": None
-#     }
-#     st.session_state.display_stage = 1
-#     st.rerun()
+    st.session_state.current_message = {
+        "role": "Customer",
+        "content": user_input,
+        "sentiment": f"{sentiment_label} {sentiment_emoji}",
+        "intent": intent_label,
+        "score": intent_score,
+        "response": None
+    }
+    st.session_state.display_stage = 1
+    st.rerun()
 
-# elif st.session_state.display_stage == 1:
-#     temp_msg = {**st.session_state.current_message}
-#     temp_msg['sentiment'] = None
-#     display_message(temp_msg)
-#     time.sleep(0.5)
-#     st.session_state.display_stage = 2
-#     st.rerun()
+elif st.session_state.display_stage == 1:
+    temp_msg = {**st.session_state.current_message}
+    temp_msg['sentiment'] = None
+    display_message(temp_msg)
+    time.sleep(0.5)
+    st.session_state.display_stage = 2
+    st.rerun()
 
-# elif st.session_state.display_stage == 2:
-#     display_message(st.session_state.current_message, show_analysis=True)
-#     if st.session_state.current_message["response"] is None:
-#         with st.spinner("Thinking..."):
-#             result = qa_chain.run(st.session_state.current_message["content"])
-#             st.session_state.current_message["response"] = result
+elif st.session_state.display_stage == 2:
+    display_message(st.session_state.current_message, show_analysis=True)
+    if st.session_state.current_message["response"] is None:
+        with st.spinner("Thinking..."):
+            result = qa_chain.run(st.session_state.current_message["content"])
+            st.session_state.current_message["response"] = result
