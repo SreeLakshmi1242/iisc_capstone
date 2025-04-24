@@ -102,6 +102,15 @@ def display_message(msg, show_analysis=False):
             unsafe_allow_html=True
         )
 
+# ----------------------------
+# State Initialization
+# ----------------------------
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+if "display_stage" not in st.session_state:
+    st.session_state.display_stage = 0
+if "current_message" not in st.session_state:
+    st.session_state.current_message = None
 
 # Function to clean assistant's response
 def clean_response(response):
