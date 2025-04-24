@@ -228,7 +228,7 @@ elif st.session_state.display_stage == 2:
             result = qa_chain.run(st.session_state.current_message["content"])
             st.session_state.current_message["response"] = result
 
-            chat_history.append((st.session_state.current_message["content"], result["answer"]))
+            chat_history.append((st.session_state.current_message["content"], result))
 
             # Append both messages
             st.session_state.messages.append({
