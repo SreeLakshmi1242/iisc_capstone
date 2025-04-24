@@ -56,7 +56,7 @@ def load_llm():
 llm = load_llm()
 
 # Memory
-memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+# memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 
 # Build Conversational Chain
 def display_message(msg, show_analysis=False):
