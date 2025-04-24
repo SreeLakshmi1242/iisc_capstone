@@ -42,7 +42,7 @@ def load_vectorstore(path):
     return FAISS.load_local(path, embeddings=embedding_function, allow_dangerous_deserialization=True)
 
 try:
-    db = load_vectorstore(faiss_folder)
+    db = load_vectorstore(FAISS_INDEX_PATH)
     retriever = db.as_retriever()
 except Exception as e:
     st.error(f"Failed to load FAISS index: {e}")
