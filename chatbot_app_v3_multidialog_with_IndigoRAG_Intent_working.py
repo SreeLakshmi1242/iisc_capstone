@@ -90,3 +90,50 @@ def display_message(msg, show_analysis=False):
             """,
             unsafe_allow_html=True
         )
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+if "display_stage" not in st.session_state:
+    st.session_state.display_stage = 0
+if "current_message" not in st.session_state:
+    st.session_state.current_message = None
+
+# ----------------------------
+# Sidebar: Clear and Upload
+# ----------------------------
+st.sidebar.button("🪠 Clear Chat", on_click=lambda: st.session_state.update(
+    messages=[], display_stage=0, current_message=None
+))
+
+st.sidebar.markdown("---")
+st.sidebar.subheader("📄 Upload New Document (TXT / PDF)")
+uploaded_file = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
+
+
+if uploaded_file:
+    os.makedirs("temp_uploads", exist_ok=True)
+    file_path = f"temp_uploads/{uploaded_file.name}"
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.read())
+    
+    if os.path.exists("faiss_index"):
+        os.system("rm -rf faiss_index")
+
+    if uploaded_file.name.endswith(".txt"):
+        loader = TextLoader(file_path)
+    else:
+        loader = PyPDFLoader(file_path)
+
+    documents = loader.load()
+    for doc in documents:
+        doc.metadata["source"] = uploaded_file.name
+
+    splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+    chunks = splitter.split_documents(documents)
+
+    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    vectordb = FAISS.from_documents(chunks, embeddings)
+    vectordb.save_local("faiss_index")
+
+    st.sidebar.success("✅ Document processed and vector DB updated.")
+    st.rerun()
+
