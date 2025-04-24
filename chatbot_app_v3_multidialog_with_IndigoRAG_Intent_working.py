@@ -200,10 +200,10 @@ elif st.session_state.display_stage == 1:
 
 elif st.session_state.display_stage == 2:
     st.success("T3")
-    display_message(st.session_state.current_message, show_analysis=True)
+    display_message(st.session_state.current_message, show_analysis=False)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            result = qa_chain.run(st.session_state.current_message["answer"])
+            result = qa_chain.run(st.session_state.current_message["content"])
             cleaned_response = clean_response(result)  # Clean the response
             st.session_state.current_message["response"] = cleaned_response
 
