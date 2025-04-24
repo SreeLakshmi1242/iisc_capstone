@@ -217,7 +217,7 @@ elif st.session_state.display_stage == 2:
             })
             st.session_state.messages.append({
                 "role": "ChatAgent",
-                "content": cleaned_response
+                "content": result
             })
 
             # Reset state
