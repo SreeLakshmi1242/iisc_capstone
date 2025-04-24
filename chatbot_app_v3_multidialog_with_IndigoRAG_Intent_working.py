@@ -24,7 +24,7 @@ model_name = st.sidebar.selectbox(
 )
 
 # FAISS folder path
-faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
+FAISS_INDEX_PATH = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
 
 # Initialize embedding model
 @st.cache_resource
