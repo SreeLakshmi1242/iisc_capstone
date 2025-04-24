@@ -102,7 +102,7 @@ def display_message(msg, show_analysis=False):
             unsafe_allow_html=True
         )
 
- ----------------------------
+ # ----------------------------
 # State Initialization
 # ----------------------------
 if "messages" not in st.session_state:
