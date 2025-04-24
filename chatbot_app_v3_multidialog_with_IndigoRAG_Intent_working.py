@@ -187,6 +187,7 @@ if "current_message" not in st.session_state:
 #     vectordb = FAISS.from_documents(chunks, embedding_function)
 #     vectordb.save_local(FAISS_INDEX_PATH)
 # else:
+
 try:
     vectordb = load_vectorstore()  # Make sure this is defined
 except Exception as e:
@@ -195,6 +196,9 @@ except Exception as e:
 
 st.success("FAISS index loaded successfully!")
 
+retriever = vectordb.as_retriever()
+memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=True)
+qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory)
 
 # ----------------------------
 # NLP Pipelines
