@@ -125,7 +125,7 @@ else:
         st.stop()
 
 
- ----------------------------
+# ----------------------------
 # NLP Pipelines
 # ----------------------------
 sentiment_pipe = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest")
