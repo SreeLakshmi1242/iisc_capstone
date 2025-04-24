@@ -9,6 +9,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationSummaryBufferMemory
+from langchain.prompts import PromptTemplate
 
 hf_token = st.secrets["auth_key"]
 # App title
