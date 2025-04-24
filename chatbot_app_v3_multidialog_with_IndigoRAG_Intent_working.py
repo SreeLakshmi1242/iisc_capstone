@@ -138,7 +138,7 @@ system_instruction = "The assistant should provide detailed explanations."
 
 # Create the prompt template
 condense_question_prompt = PromptTemplate(
-    input_variables=["context", "question"],
+    input_variables=["context", "query"],
     template="""
 You are an airline customer service assistant for IndiGo Airlines.
 
@@ -148,7 +148,7 @@ Context:
 {context}
 
 Question:
-{question}
+{query}
 
 Answer:"""
 )
@@ -226,7 +226,7 @@ elif st.session_state.display_stage == 2:
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
             result = qa_chain({
-    "question": st.session_state.current_message["content"],
+    "query": st.session_state.current_message["content"],
     "chat_history": chat_history})
             st.session_state.current_message["response"] = result['answer']
 
