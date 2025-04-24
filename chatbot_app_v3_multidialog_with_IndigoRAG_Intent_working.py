@@ -242,6 +242,7 @@ if user_input and st.session_state.display_stage == 0:
     st.rerun()
 
 elif st.session_state.display_stage == 1:
+    st.success("T2")
     temp_msg = {**st.session_state.current_message}
     temp_msg['sentiment'] = None
     display_message(temp_msg)
@@ -250,6 +251,7 @@ elif st.session_state.display_stage == 1:
     st.rerun()
 
 elif st.session_state.display_stage == 2:
+    st.success("T3")
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
