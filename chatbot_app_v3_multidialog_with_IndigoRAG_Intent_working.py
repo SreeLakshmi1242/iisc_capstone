@@ -226,7 +226,7 @@ elif st.session_state.display_stage == 2:
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
             result = qa_chain.run(st.session_state.current_message["content"])
-            st.session_state.current_message["response"] = result['answer']
+            st.session_state.current_message["response"] = result
 
             chat_history.append((st.session_state.current_message["content"], result["answer"]))
 
