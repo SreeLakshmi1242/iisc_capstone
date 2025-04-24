@@ -196,7 +196,9 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            result = qa_chain.run(st.session_state.current_message["content"])
+            result = qa_chain({
+    "question": st.session_state.current_message["content"],
+    "chat_history": chat_history})
             st.session_state.current_message["response"] = result
 
             # Append both messages
