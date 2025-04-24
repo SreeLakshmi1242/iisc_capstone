@@ -90,12 +90,19 @@ def display_message(msg, show_analysis=False):
         st.markdown("</div>", unsafe_allow_html=True)
         
     elif msg['role'] == "ChatAgent":
+        clean_content = msg['content']
+
+        # Clean URLs and irrelevant text from the response
+        clean_content = ' '.join(clean_content.splitlines())  # Remove newlines
+        clean_content = ' '.join([word for word in clean_content.split() if not word.startswith("http")])  # Remove URLs
+        clean_content = ' '.join([word for word in clean_content.split() if word not in ['FAQs', 'Page', 'of', 'at', 'site', 'map', 'terms', 'cookie', 'disclaimer']])  # Remove common irrelevant words
+
         st.markdown(
             f"""
             <div style='display: flex; justify-content: flex-end; margin-bottom: 10px;'>
                 <div style='background-color: {colors['ChatAgent']}; padding: 10px; border-radius: 10px; max-width: 60%; text-align: right;'>
                     <strong>{avatars['ChatAgent']} Assistant</strong><br>
-                    <span>{msg['content']}</span>
+                    <span>{clean_content}</span>
                 </div>
             </div>
             """,
