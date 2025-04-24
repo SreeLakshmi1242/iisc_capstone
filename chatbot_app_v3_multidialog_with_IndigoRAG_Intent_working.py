@@ -119,9 +119,9 @@ st.sidebar.button("🪠 Clear Chat", on_click=lambda: st.session_state.update(
     messages=[], display_stage=0, current_message=None
 ))
 
-st.sidebar.markdown("---")
-st.sidebar.subheader("📄 Upload New Document (TXT / PDF)")
-uploaded_file = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
+# st.sidebar.markdown("---")
+# st.sidebar.subheader("📄 Upload New Document (TXT / PDF)")
+# uploaded_file = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
 
 
 # if uploaded_file:
