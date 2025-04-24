@@ -108,4 +108,78 @@ def display_message(msg, show_analysis=False):
             <div style='display: flex; gap: 8px; margin-bottom: 10px;'>
                 <div style='background-color: {colors['Customer']}; padding: 10px; border-radius: 10px; max-width: 45%; text-align: left;'>
                     <strong>{avatars['Customer']} Customer</strong><br>
-                    <span
+                    <span>{msg['content']}</span>
+                </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        if show_analysis and 'sentiment' in msg:
+            st.markdown(
+                f"""
+                <div style='background-color: #f0f0f0; padding: 10px; border-radius: 10px; font-size: 14px; max-width: 35%; min-width: 150px;'>
+                    <strong>🧠 Sentiment:</strong> {msg.get('sentiment', '')}<br>
+                    <strong>🎯 Intent:</strong> {msg.get('intent', '')} {f"({msg.get('score', '')}%)" if msg.get('score') else ''}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    elif msg['role'] == "ChatAgent":
+        st.markdown(
+            f"""
+            <div style='display: flex; justify-content: flex-end; margin-bottom: 10px;'>
+                <div style='background-color: {colors['ChatAgent']}; padding: 10px; border-radius: 10px; max-width: 60%; text-align: right;'>
+                    <strong>{avatars['ChatAgent']} Assistant</strong><br>
+                    <span>{msg['content']}</span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+# Display previous messages
+for msg in st.session_state.messages:
+    display_message(msg, show_analysis=(msg['role'] == 'Customer'))
+
+# Handle new input
+user_input = st.chat_input("Say something...")
+if user_input and st.session_state.display_stage == 0:
+    sentiment_result = sentiment_pipe(user_input)[0]
+    sentiment_label = sentiment_result['label']
+    sentiment_emoji = {"POSITIVE": "😄", "NEGATIVE": "😞", "NEUTRAL": "😐"}.get(sentiment_label.upper(), "💬")
+
+    intent_result = intent_pipe(user_input, candidate_labels=intent_labels)
+    intent_label = intent_result["labels"][0]
+    intent_score = round(intent_result["scores"][0] * 100, 2)
+
+    st.session_state.current_message = {
+        "role": "Customer",
+        "content": user_input,
+        "sentiment": f"{sentiment_label} {sentiment_emoji}",
+        "intent": intent_label,
+        "score": intent_score,
+        "response": None
+    }
+    st.session_state.display_stage = 1
+    st.rerun()
+
+elif st.session_state.display_stage == 1:
+    temp_msg = {**st.session_state.current_message}
+    temp_msg['sentiment'] = None
+    display_message(temp_msg)
+    time.sleep(0.5)
+    st.session_state.display_stage = 2
+    st.rerun()
+
+elif st.session_state.display_stage == 2:
+    display_message(st.session_state.current_message, show_analysis=True)
+    if st.session_state.current_message["response"] is None:
+        with st.spinner("Thinking..."):
+            result = qa_chain.run(st.session_state.current_message["content"])
+            st.session_state.current_message["response"] = result
+            st.session_state.messages.append(st.session_state.current_message)
+            st.session_state.messages.append({"role": "ChatAgent", "content": result})
+        st.session_state.display_stage = 0
+        st.rerun()
