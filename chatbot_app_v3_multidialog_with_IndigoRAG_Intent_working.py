@@ -23,3 +23,30 @@ st.sidebar.header("Configuration")
 model_name = st.sidebar.selectbox("Select a model", ["HuggingFaceH4/zephyr-7b-beta"])
 FAISS_INDEX_PATH = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
 
+
+# Load FAISS vector store
+@st.cache_resource
+def load_vectorstore(path):
+    try:
+        return FAISS.load_local(path, embeddings=embedding_function, allow_dangerous_deserialization=True)
+    except Exception as e:
+        st.error(f"Failed to load FAISS index: {e}")
+        st.stop()
+
+# Try loading FAISS vector store
+try:
+    db = load_vectorstore(FAISS_INDEX_PATH)
+    retriever = db.as_retriever()
+except Exception as e:
+    st.error(f"Failed to load FAISS index: {e}")
+    st.stop()
+
+# Load LLM
+@st.cache_resource
+def load_llm():
+    return HuggingFaceHub(
+        repo_id=model_name,
+        model_kwargs={"temperature": 0.5, "max_new_tokens": 512},
+        huggingfacehub_api_token=hf_token
+    )
+
