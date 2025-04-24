@@ -52,12 +52,18 @@ except Exception as e:
 
 # Load LLM
 @st.cache_resource
+from transformers import pipeline
+
+@st.cache_resource
 def load_llm():
-    return HuggingFaceHub(
-        repo_id=model_name,
-        model_kwargs={"temperature": 0.5, "max_new_tokens": 512},
-        huggingfacehub_api_token=hf_token
+    return pipeline(
+        "text-generation",
+        model=model_name,
+        tokenizer=model_name,
+        token=hf_token,
+        device_map="auto"  # or "cpu" if you're not using GPU
     )
+
 
 llm = load_llm()
 
