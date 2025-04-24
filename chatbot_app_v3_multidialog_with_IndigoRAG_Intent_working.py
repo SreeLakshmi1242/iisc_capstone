@@ -61,9 +61,11 @@ def load_llm_pipeline():
         model_name,
         device_map="auto",
         torch_dtype="auto",
+        low_cpu_mem_usage=True,  # ✅ This line avoids meta tensor issues
         token=hf_token
     )
     return pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=512, temperature=0.5)
+
 
 llm_pipeline = load_llm_pipeline()
 llm = HuggingFacePipeline(pipeline=llm_pipeline)
