@@ -155,8 +155,7 @@ if uploaded_file:
     st.rerun()
 
 # ----------------------------
-# Load or Fallback FAISS Index
-# ----------------------------
+# Load or create FAISS index
 if not Path(FAISS_INDEX_PATH).exists():
     st.info("Creating a new FAISS index from sample_docs.txt")
     loader = TextLoader("sample_docs.txt")
@@ -165,10 +164,12 @@ if not Path(FAISS_INDEX_PATH).exists():
     chunks = splitter.split_documents(documents)
     vectordb = FAISS.from_documents(chunks, embedding_function)
     vectordb.save_local(FAISS_INDEX_PATH)
-
-retriever = vectordb.as_retriever()
-memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=True)
-qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory)
+else:
+    try:
+        vectordb = load_vectorstore(FAISS_INDEX_PATH)  # Make sure this is defined
+    except Exception as e:
+        st.error(f"Error loading FAISS vector store: {e}")
+        st.stop()
 
 # ----------------------------
 # NLP Pipelines
