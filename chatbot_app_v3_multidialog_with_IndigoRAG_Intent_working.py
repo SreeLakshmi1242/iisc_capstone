@@ -129,14 +129,24 @@ def clean_response(response):
 
 # Define the custom prompt template
 prompt_template = PromptTemplate.from_template("""
-You are a helpful assistant. Please provide concise answers without including disclaimers, terms, or irrelevant notices.
-If the intent is negative, show empathy.
+ You are an Indigo customer assistant. Based on the context - {context}, generate a concise answer for the {question}. For a question on lost baggage, example of answer  as follows -
 
-Context:
-{context}
+Thank you for reaching out to Indigo regarding your lost baggage. We sincerely apologize for the inconvenience this may have caused.
 
-Question: {question}
-Answer:
+To help us locate your baggage as quickly as possible, please provide the following information:
+
+1. Baggage Claim Number (available from the baggage counter or the baggage receipt)
+
+2. Flight Details (Flight Number, Date of Travel, and Departure & Arrival Locations)
+
+3. Description of the Baggage (Color, Size, Type, and any identifying marks)
+
+We are committed to locating your baggage and will provide updates as soon as we have more information. In the meantime, please make sure to check your email and phone for any notifications from our team.
+
+If you have already filed a report with us, you can track the status of your lost baggage by visiting the [Indigo Lost and Found Portal] or contacting our customer service team at [Customer Service Number].
+
+We truly appreciate your patience and understanding. Should you have any additional questions, feel free to reach out, and we’ll be happy to assist you further.
+      
 """)
 
 retriever = db.as_retriever()
