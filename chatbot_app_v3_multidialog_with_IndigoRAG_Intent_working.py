@@ -1,75 +1,57 @@
 import os
 import time
 import streamlit as st
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
 from langchain.chains import ConversationalRetrievalChain
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain.llms import HuggingFacePipeline
-from langchain.memory import ConversationSummaryBufferMemory
-from langchain.document_loaders import TextLoader
-from langchain.text_splitter import CharacterTextSplitter
-from pathlib import Path
+from langchain_huggingface import HuggingFaceEndpoint
+from langchain_community.llms import HuggingFaceHub
+from langchain.memory import ConversationBufferMemory
 
-# Streamlit app setup
+hf_token = st.secrets["auth_key"]
+# App title
 st.set_page_config(page_title="Chat with your Documents", layout="wide")
 st.title("📄 Chat with Documents - Local LLM + FAISS")
 
-# Hugging Face Token
-hf_token = st.secrets["auth_key"]
-
 # Sidebar configuration
 st.sidebar.header("Configuration")
+
+# Model selection
 model_name = st.sidebar.selectbox("Select a model", [
-    "google/flan-t5-base",
-    "tiiuae/falcon-7b-instruct",
     "HuggingFaceH4/zephyr-7b-beta"
 ])
-FAISS_INDEX_PATH = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
 
-# Embeddings setup
-embedding_function = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+# FAISS folder path
+faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
 
-# Cache vectorstore loading
+# Initialize embedding model
+@st.cache_resource
+def load_embedding():
+    return HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2",
+    model_kwargs={"use_auth_token": hf_token})
+
+    
+embedding_function = load_embedding()
+
+# Load FAISS vector store
 @st.cache_resource
 def load_vectorstore(path):
     return FAISS.load_local(path, embeddings=embedding_function, allow_dangerous_deserialization=True)
 
-# Load FAISS or create new
-if not Path(FAISS_INDEX_PATH).exists():
-    st.info("Creating FAISS index from `sample_docs.txt`...")
-    loader = TextLoader("sample_docs.txt")
-    documents = loader.load()
-    splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
-    chunks = splitter.split_documents(documents)
-    vectordb = FAISS.from_documents(chunks, embedding_function)
-    vectordb.save_local(FAISS_INDEX_PATH)
-else:
-    try:
-        vectordb = load_vectorstore(FAISS_INDEX_PATH)
-    except Exception as e:
-        st.error(f"Error loading FAISS index: {e}")
-        st.stop()
+try:
+    db = load_vectorstore(faiss_folder)
+    retriever = db.as_retriever()
+except Exception as e:
+    st.error(f"Failed to load FAISS index: {e}")
+    st.stop()
 
-retriever = vectordb.as_retriever()
-
-# Load LLM pipeline
+# Load LLM
 @st.cache_resource
-def load_llm_pipeline():
-    tokenizer = AutoTokenizer.from_pretrained(model_name, token=hf_token)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        device_map="auto",
-        torch_dtype="auto",
-        low_cpu_mem_usage=True,  # ✅ This line avoids meta tensor issues
-        token=hf_token
-    )
-    return pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=512, temperature=0.5)
+def load_llm():
+    return HuggingFaceHub(repo_id=model_name, model_kwargs={"temperature": 0.5, "max_new_tokens": 512},huggingfacehub_api_token=hf_token)
 
-
-llm_pipeline = load_llm_pipeline()
-llm = HuggingFacePipeline(pipeline=llm_pipeline)
-
+llm = load_llm()
 # Setup QA chain
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=True)
 qa_chain = ConversationalRetrievalChain.from_llm(llm, retriever=retriever, memory=memory)
