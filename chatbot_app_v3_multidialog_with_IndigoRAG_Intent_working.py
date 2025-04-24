@@ -159,7 +159,7 @@ memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", ret
 #                                                  condense_question_prompt=condense_question_prompt,chain_type="stuff")
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
-    retriever=vectorstore.as_retriever(),
+    retriever=faiss_index.as_retriever(),
     chain_type="stuff",  # basic stuff chain for one-shot answers
     chain_type_kwargs={"prompt": condense_question_prompt}
 )
