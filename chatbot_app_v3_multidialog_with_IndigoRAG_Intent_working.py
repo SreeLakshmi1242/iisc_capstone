@@ -21,7 +21,7 @@ st.sidebar.header("Configuration")
 
 # Model selection
 model_name = st.sidebar.selectbox("Select a model", [
-    "mistralai/Mistral-7B-Instruct-v0.1"
+    "mistralai/Mistral-7B-Instruct-v0.1",  "HuggingFaceH4/zephyr-7b-beta"
 ])
 
 # FAISS folder path
@@ -154,8 +154,15 @@ Answer:"""
 
 retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
-qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
-                                                 condense_question_prompt=condense_question_prompt,chain_type="stuff")
+# qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
+#                                                  condense_question_prompt=condense_question_prompt,chain_type="stuff")
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever(),
+    chain_type="stuff",  # basic stuff chain for one-shot answers
+    chain_type_kwargs={"prompt": condense_question_prompt}
+)
+
 
 chat_history = []
 # ----------------------------
