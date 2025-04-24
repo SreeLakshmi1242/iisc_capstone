@@ -135,7 +135,7 @@ template = (
 condense_question_prompt = PromptTemplate.from_template(template)
 
 retriever = db.as_retriever()
-memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=True)
+memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
 qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
                                                  condense_question_prompt=condense_question_prompt,chain_type="stuff")
 
