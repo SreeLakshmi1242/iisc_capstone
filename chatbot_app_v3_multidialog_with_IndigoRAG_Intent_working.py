@@ -52,3 +52,67 @@ def load_llm():
     return HuggingFaceHub(repo_id=model_name, model_kwargs={"temperature": 0.5, "max_new_tokens": 512},huggingfacehub_api_token=hf_token)
 
 llm = load_llm()
+
+# Memory
+memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+
+# Build Conversational Chain
+qa_chain = ConversationalRetrievalChain.from_llm(
+    llm=llm,
+    retriever=retriever,
+    memory=memory,
+    return_source_documents=True,
+    output_key="answer"
+)
+
+
+
+# Session state initialization
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+if "display_stage" not in st.session_state:
+    st.session_state.display_stage = 1
+
+if "current_message" not in st.session_state:
+    st.session_state.current_message = {"content": "", "response": ""}
+
+# Chat UI
+st.subheader("Chat Interface")
+user_input = st.chat_input("Ask a question about your documents")
+
+if user_input:
+    st.session_state.current_message = {"content": user_input, "response": ""}
+    st.session_state.display_stage = 2
+
+# Display chat history
+for chat in st.session_state.chat_history:
+    with st.chat_message("user"):
+        st.markdown(chat[0])
+    with st.chat_message("assistant"):
+        st.markdown(chat[1])
+
+# Handle response
+if st.session_state.display_stage == 2:
+    with st.chat_message("user"):
+        st.markdown(st.session_state.current_message["content"])
+
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            try:
+                response = qa_chain.invoke({"question": st.session_state.current_message["content"]})
+                answer = response.get("answer", "No answer generated.")
+                st.session_state.current_message["response"] = answer
+            except Exception as e:
+                st.error(f"Error during response generation: {e}")
+                st.session_state.current_message["response"] = ""
+
+        st.markdown(st.session_state.current_message["response"])
+
+    # Store chat
+    st.session_state.chat_history.append([
+        st.session_state.current_message["content"],
+        st.session_state.current_message["response"]
+    ])
+    time.sleep(0.5)
+    st.session_state.display_stage = 3
