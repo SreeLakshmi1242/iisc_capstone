@@ -61,8 +61,7 @@ def load_llm():
         model=model_name,
         tokenizer=model_name,
         token=hf_token,
-        device_map="auto"  # or "cpu" if you're not using GPU
-    )
+        device_map="auto")
 
 
 llm = load_llm()
