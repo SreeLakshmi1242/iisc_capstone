@@ -137,6 +137,7 @@ memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", ret
 qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
                                                  condense_question_prompt=condense_question_prompt,chain_type="stuff")
 
+chat_history = []
 # ----------------------------
 # NLP Pipelines
 # ----------------------------
@@ -199,7 +200,9 @@ elif st.session_state.display_stage == 2:
             result = qa_chain({
     "question": st.session_state.current_message["content"],
     "chat_history": chat_history})
-            st.session_state.current_message["response"] = result
+            st.session_state.current_message["response"] = result['answer']
+
+            chat_history.append((st.session_state.current_message["content"], result["answer"]))
 
             # Append both messages
             st.session_state.messages.append({
