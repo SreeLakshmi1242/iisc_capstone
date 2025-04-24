@@ -129,14 +129,7 @@ def clean_response(response):
 
 # Define the custom prompt template
 prompt_template = PromptTemplate.from_template("""
-You are a helpful assistant. Please provide concise answers without including disclaimers, terms, or irrelevant notices.
-If the intent is negative, show empathy.
-
-Context:
-{context}
-
-Question: {question}
-Answer:
+Answer: 
 """)
 
 retriever = db.as_retriever()
