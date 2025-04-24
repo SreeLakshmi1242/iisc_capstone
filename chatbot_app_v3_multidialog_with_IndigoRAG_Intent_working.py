@@ -107,7 +107,7 @@ def display_message(msg, show_analysis=False):
 
 def load_vectorstore():
     embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-    vectorstore = FAISS.load_local(persist_path, embeddings=embedding)
+    vectorstore = FAISS.load_local(faiss_folder, embeddings=embedding)
     return vectorstore
 
 # Load on app start
