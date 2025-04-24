@@ -203,7 +203,7 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            result = qa_chain.run(st.session_state.current_message["content"])
+            result = qa_chain.run(st.session_state.current_message["answer"])
             cleaned_response = clean_response(result)  # Clean the response
             st.session_state.current_message["response"] = cleaned_response
 
