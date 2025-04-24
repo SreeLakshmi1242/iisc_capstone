@@ -162,7 +162,7 @@ qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, m
 #     retriever=retriever,
 #     chain_type="stuff",  # basic stuff chain for one-shot answers
 #     chain_type_kwargs={"prompt": condense_question_prompt}
-)
+# )
 
 
 chat_history = []
