@@ -67,7 +67,7 @@ qa_chain = ConversationalRetrievalChain.from_llm(
     llm=llm,
     retriever=retriever,
     memory=memory,
-    return_source_documents=True,
+    return_source_documents=False,
     output_key="answer"  # Avoid ambiguity in memory
 )
 
