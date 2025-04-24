@@ -261,3 +261,21 @@ elif st.session_state.display_stage == 2:
         with st.spinner("Thinking..."):
             result = qa_chain.run(st.session_state.current_message["content"])
             st.session_state.current_message["response"] = result
+
+            # Append both messages
+            st.session_state.messages.append({
+                "role": "Customer",
+                "content": st.session_state.current_message["content"],
+                "sentiment": st.session_state.current_message["sentiment"],
+                "intent": st.session_state.current_message["intent"],
+                "score": st.session_state.current_message["score"]
+            })
+            st.session_state.messages.append({
+                "role": "ChatAgent",
+                "content": result
+            })
+
+            # Reset state
+            st.session_state.current_message = None
+            st.session_state.display_stage = 0
+            st.rerun()
