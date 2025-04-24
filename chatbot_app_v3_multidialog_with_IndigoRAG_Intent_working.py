@@ -221,6 +221,7 @@ for msg in st.session_state.messages:
 # Handle new user input
 user_input = st.chat_input("Say something...")
 if user_input and st.session_state.display_stage == 0:
+    st.success("Thanks!")
     sentiment_result = sentiment_pipe(user_input)[0]
     sentiment_label = sentiment_result['label']
     sentiment_emoji = {"POSITIVE": "😄", "NEGATIVE": "😞", "NEUTRAL": "😐"}.get(sentiment_label.upper(), "💬")
