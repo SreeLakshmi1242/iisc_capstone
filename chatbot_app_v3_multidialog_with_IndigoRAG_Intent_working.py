@@ -14,6 +14,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain.schema import Document
 from langchain.schema import(AIMessage,HumanMessage,SystemMessage)
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 
 
 hf_token = st.secrets["auth_key"]
@@ -152,7 +153,10 @@ for filename in os.listdir(data_folder):
             documents.append(Document(page_content=content, metadata={"source": filename}))  # <- wrap it in Document
 
 # Then pass this 'documents' list
-embed_model_1 = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+embed_model_1 = HuggingFaceInferenceAPIEmbeddings(
+    api_key=hf_token,
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
 h_vectordb = FAISS.from_documents(documents, embed_model_1)
 retriever = h_vectordb.as_retriever(score_threshold = 0.7)
 
