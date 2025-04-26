@@ -144,11 +144,11 @@ for filename in os.listdir(data_folder):
         file_path = os.path.join(data_folder, filename)
         with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
-            documents.append(content)
+            documents.append(Document(page_content=content, metadata={"source": filename}))  # <- wrap it in Document
 
-texts =  documents
+# Then pass this 'documents' list
 embed_model_1 = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
-h_vectordb = FAISS.from_documents(texts, embed_model_1)
+h_vectordb = FAISS.from_documents(documents, embed_model_1)
 retriever = h_vectordb.as_retriever(score_threshold = 0.7)
 
 # Create the prompt template
