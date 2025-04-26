@@ -204,7 +204,7 @@ intent_labels = [
 
 
 def load_answer(question):
-    st.session_state.sessionMessages.append(HumanMessage(content=question))
+    st.session_state.sessionMessages.append(HumanMessage(content=st.session_state.current_message["content"]))
     assistant_answer = qa_chain(st.session_state.current_message["content"]).get("result")
     st.session_state.sessionMessages.append(AIMessage(content=assistant_answer.content))
     return assistant_answer.content
