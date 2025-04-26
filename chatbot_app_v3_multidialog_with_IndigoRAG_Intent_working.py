@@ -140,7 +140,7 @@ system_instruction = "The assistant should provide detailed explanations."
 condense_question_prompt = PromptTemplate(
     input_variables=["context", "question"],
     template="""
-You are an airline customer service assistant for IndiGo Airlines.
+You are an airline customer service assistant for IndiGo Airlines. 
 
 Answer the user's question based **only** on the context below. Do not repeat the context or the question. If you don't know the answer, say you don't know.
 
@@ -150,7 +150,12 @@ Context:
 Question:
 {question}
 
-Answer:"""
+Answer:
+
+Answer in 5 lines only. Do not return context or prompt rules
+"""
+
+
 )
 
 retriever = db.as_retriever()
