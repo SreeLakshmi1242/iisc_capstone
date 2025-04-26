@@ -170,7 +170,7 @@ chain_type_kwargs = {"prompt": PROMPT}
 # retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever,
-                                                 chain_type="stuff",retriever=retriever,input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
+                                                 chain_type="stuff",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
 
 
 
