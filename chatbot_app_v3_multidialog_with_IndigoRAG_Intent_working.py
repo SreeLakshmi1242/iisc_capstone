@@ -153,7 +153,7 @@ h_vectordb = FAISS.from_documents(documents, embed_model_1)
 retriever = h_vectordb.as_retriever(score_threshold = 0.7)
 
 # Create the prompt template
-condense_question_prompt = PromptTemplate(
+prompt = PromptTemplate(
     input_variables=["context", "question"],
     template= """Given the following context and a question, generate an answer based on this context only.
 In the answer try to provide as much text as possible from "response" section in the source document context without making much changes.
@@ -165,11 +165,15 @@ QUESTION: {question}"""
 
 
 )
+chain_type_kwargs = {"prompt": PROMPT}
 
 # retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
-qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
-                                                 condense_question_prompt=condense_question_prompt)
+qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever,
+                                                 chain_type="stuff",retriever=retriever,input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
+
+
+
 # qa_chain = RetrievalQA.from_chain_type(
 #     llm=llm,
 #     retriever=retriever,
