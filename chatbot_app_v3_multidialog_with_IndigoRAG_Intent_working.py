@@ -146,7 +146,7 @@ for filename in os.listdir(data_folder):
             content = file.read()
             documents.append(content)
 
-texts = [doc.page_content for doc in documents]
+texts =  documents
 embed_model_1 = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 h_vectordb = FAISS.from_documents(texts, embed_model_1)
 retriever = h_vectordb.as_retriever(score_threshold = 0.7)
