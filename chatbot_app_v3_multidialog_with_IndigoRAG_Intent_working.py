@@ -204,7 +204,11 @@ sentiment_pipe = pipeline(
     use_auth_token=True  # Use Hugging Face token if needed
 )
 
-intent_pipe = pipeline("zero-shot-classification")
+intent_pipe = pipeline(
+    "zero-shot-classification",
+    model="facebook/bart-large-mnli",   # very strong zero-shot model
+    device=-1,                          # forces CPU / API
+)
 intent_labels = [
     'Billing issues', 'Loyalty Program & Miles', 'Flight booking',
     'Child and Infant Travel', 'Meal and Dietary Preferences',
