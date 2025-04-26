@@ -112,6 +112,8 @@ if "display_stage" not in st.session_state:
     st.session_state.display_stage = 0
 if "current_message" not in st.session_state:
     st.session_state.current_message = None
+if "sessionMessages" not in st.session_state:
+    st.session_state.sessionMessages = []
 
 # Function to clean assistant's response
 def clean_response(response):
