@@ -206,13 +206,6 @@ intent_labels = [
 ]
 
 
-def load_answer(question):
-    st.session_state.sessionMessages.append(HumanMessage(content=st.session_state.current_message["content"]))
-    assistant_answer = qa_chain(st.session_state.current_message["content"]).get("result")
-    st.session_state.sessionMessages.append(AIMessage(content=assistant_answer))
-    return assistant_answer
-
-
 # ----------------------------
 # Main Chat Interface
 # ----------------------------
@@ -257,11 +250,10 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            response = load_answer(user_input)
+            response =  qa_chain(st.session_state.current_message["content"]).get("result")
             result = response["result"].split("ANSWER:")[1]
-            st.subheader("Answer:")
-     
-            # result = qa_chain(st.session_state.current_message["content"]).get('result')
+
+                 # result = qa_chain(st.session_state.current_message["content"]).get('result')
             st.session_state.current_message["response"] = result
 
             chat_history.append((st.session_state.current_message["content"], result))
