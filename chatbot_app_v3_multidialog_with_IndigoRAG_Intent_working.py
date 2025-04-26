@@ -26,28 +26,28 @@ model_name = st.sidebar.selectbox("Select a model", [
 ])
 
 # FAISS folder path
-faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./faiss_index")
+faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./data")
 
 # Initialize embedding model
 @st.cache_resource
-def load_embedding():
+def load_embedding(texts):
     return HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",
-    model_kwargs={"use_auth_token": hf_token,"device":"cpu"})
+    model_kwargs={"use_auth_token": hf_token,"device":"cpu"}).embed_documents(texts)
 
 embedding_function = load_embedding()
 
 # Load FAISS vector store
-@st.cache_resource
-def load_vectorstore(path):
-    return FAISS.load_local(path, embeddings=embedding_function, allow_dangerous_deserialization=True)
+# @st.cache_resource
+# def load_vectorstore(path):
+#     return FAISS.load_local(path, embeddings=embedding_function, allow_dangerous_deserialization=True)
 
-try:
-    db = load_vectorstore(faiss_folder)
-    retriever = db.as_retriever()
-except Exception as e:
-    st.error(f"Failed to load FAISS index: {e}")
-    st.stop()
+# try:
+#     db = load_vectorstore(faiss_folder)
+#     retriever = db.as_retriever()
+# except Exception as e:
+#     st.error(f"Failed to load FAISS index: {e}")
+#     st.stop()
 
 # Load LLM
 @st.cache_resource
@@ -136,6 +136,11 @@ system_instruction = "The assistant should provide detailed explanations."
 # Answer:
 # """
 
+texts = [doc.page_content for doc in faiss_folder]
+embed_model_1 = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+h_vectordb = FAISS.from_documents(texts, embed_model_1)
+retriever = h_vectordb.as_retriever(score_threshold = 0.7)
+
 # Create the prompt template
 condense_question_prompt = PromptTemplate(
     input_variables=["context", "question"],
@@ -150,7 +155,7 @@ QUESTION: {question}"""
 
 )
 
-retriever = db.as_retriever()
+# retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
 qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
                                                  condense_question_prompt=condense_question_prompt)
