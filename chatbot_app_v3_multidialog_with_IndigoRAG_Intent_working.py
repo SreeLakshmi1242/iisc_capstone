@@ -161,7 +161,7 @@ Answer in 5 lines only. Do not return context or prompt rules
 retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
 qa_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory, 
-                                                 condense_question_prompt=condense_question_prompt,chain_type="stuff")
+                                                 condense_question_prompt=condense_question_prompt)
 # qa_chain = RetrievalQA.from_chain_type(
 #     llm=llm,
 #     retriever=retriever,
