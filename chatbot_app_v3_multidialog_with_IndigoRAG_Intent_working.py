@@ -11,6 +11,7 @@ from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationSummaryBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
+from langchain.schema import Document
 
 hf_token = st.secrets["auth_key"]
 # App title
