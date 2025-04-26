@@ -268,7 +268,7 @@ elif st.session_state.display_stage == 2:
 
              
 
-            Append both messages
+            # Append both messages
             st.session_state.messages.append({
                 "role": "Customer",
                 "content": st.session_state.current_message["content"],
