@@ -35,7 +35,7 @@ def load_embedding(texts):
     model_name="sentence-transformers/all-MiniLM-L6-v2",
     model_kwargs={"use_auth_token": hf_token,"device":"cpu"}).embed_documents(texts)
 
-embedding_function = load_embedding()
+# embedding_function = load_embedding()
 
 # Load FAISS vector store
 # @st.cache_resource
