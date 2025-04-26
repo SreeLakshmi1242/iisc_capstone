@@ -250,9 +250,9 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-               response = load_answer(user_input)
-               st.subheader("Answer:")
-               st.write(response,key=1)
+            response = load_answer(user_input)
+            st.subheader("Answer:")
+            st.write(response,key=1)
              
             # result = qa_chain(st.session_state.current_message["content"]).get('result')
             # st.session_state.current_message["response"] = result
