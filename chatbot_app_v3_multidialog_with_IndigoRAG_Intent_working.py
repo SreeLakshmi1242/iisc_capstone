@@ -202,8 +202,8 @@ intent_labels = [
 # Main Chat Interface
 # ----------------------------
 # Display previous messages
-for msg in st.session_state.messages:
-    display_message(msg, show_analysis=(msg['role'] == 'Customer'))
+# for msg in st.session_state.messages:
+#     display_message(msg, show_analysis=(msg['role'] == 'Customer'))
 
 # Handle new user input
 user_input = st.chat_input("Say something...")
