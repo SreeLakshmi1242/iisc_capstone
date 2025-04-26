@@ -26,7 +26,7 @@ model_name = st.sidebar.selectbox("Select a model", [
 ])
 
 # FAISS folder path
-faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./data")
+# faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./data")
 
 # Initialize embedding model
 @st.cache_resource
@@ -135,8 +135,18 @@ system_instruction = "The assistant should provide detailed explanations."
 
 # Answer:
 # """
+data_folder = './data'
 
-texts = [doc.page_content for doc in faiss_folder]
+documents = []
+
+for filename in os.listdir(data_folder):
+    if filename.endswith('.txt'):
+        file_path = os.path.join(data_folder, filename)
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+            documents.append(content)
+
+texts = [doc.page_content for doc in documents]
 embed_model_1 = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 h_vectordb = FAISS.from_documents(texts, embed_model_1)
 retriever = h_vectordb.as_retriever(score_threshold = 0.7)
