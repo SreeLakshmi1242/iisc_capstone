@@ -165,7 +165,10 @@ If the answer is not found in the context, kindly state "I don't know." Don't tr
 
 CONTEXT: {context}
 
-QUESTION: {question}"""
+QUESTION: {question}
+
+ANSWER:
+"""
 
 
 )
@@ -255,6 +258,7 @@ elif st.session_state.display_stage == 2:
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
             response = load_answer(user_input)
+            result = response["result"].split("ANSWER:")[1]
             st.subheader("Answer:")
      
             # result = qa_chain(st.session_state.current_message["content"]).get('result')
