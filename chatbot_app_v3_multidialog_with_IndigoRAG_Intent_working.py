@@ -193,7 +193,12 @@ chat_history = []
 # ----------------------------
 # NLP Pipelines
 # ----------------------------
-sentiment_pipe = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest")
+sentiment_pipe = pipeline(
+    "sentiment-analysis",
+    model="cardiffnlp/twitter-roberta-base-sentiment-latest",
+    device=-1,  # Force CPU
+    use_auth_token=True  # Use Hugging Face token if needed
+)
 
 intent_pipe = pipeline("zero-shot-classification")
 intent_labels = [
