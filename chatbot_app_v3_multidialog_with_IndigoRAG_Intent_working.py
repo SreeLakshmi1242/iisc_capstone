@@ -198,6 +198,14 @@ intent_labels = [
     'Group Booking Discounts', 'Luggage Rules & Allowances', 'Baggage issues'
 ]
 
+
+def load_answer(question):
+    st.session_state.sessionMessages.append(HumanMessage(content=question))
+    assistant_answer = qa_chain(st.session_state.current_message["content"]).get("result")
+    st.session_state.sessionMessages.append(AIMessage(content=assistant_answer.content))
+    return assistant_answer.content
+
+
 # ----------------------------
 # Main Chat Interface
 # ----------------------------
@@ -242,10 +250,20 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            result = qa_chain(st.session_state.current_message["content"]).get('result')
-            st.session_state.current_message["response"] = result
+               response = load_answer(user_input)
+               st.subheader("Answer:")
+               st.write(response,key=1)
+             
+            # result = qa_chain(st.session_state.current_message["content"]).get('result')
+            # st.session_state.current_message["response"] = result
 
-            chat_history.append((st.session_state.current_message["content"], result))
+            # chat_history.append((st.session_state.current_message["content"], result))
+
+
+             
+
+
+             
 
             # Append both messages
             # st.session_state.messages.append({
