@@ -202,8 +202,8 @@ intent_labels = [
 # Main Chat Interface
 # ----------------------------
 # Display previous messages
-# for msg in st.session_state.messages:
-#     display_message(msg, show_analysis=(msg['role'] == 'Customer'))
+for msg in st.session_state.messages:
+    display_message(msg, show_analysis=(msg['role'] == 'Customer'))
 
 # Handle new user input
 user_input = st.chat_input("Say something...")
@@ -242,7 +242,7 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            result = qa_chain.run(st.session_state.current_message["content"])
+            result = qa_chain.run(st.session_state.current_message["content"]).get('result')
             st.session_state.current_message["response"] = result
 
             chat_history.append((st.session_state.current_message["content"], result))
