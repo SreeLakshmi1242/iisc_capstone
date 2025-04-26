@@ -165,7 +165,7 @@ QUESTION: {question}"""
 
 
 )
-chain_type_kwargs = {"prompt": PROMPT}
+chain_type_kwargs = {"prompt": prompt}
 
 # retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
