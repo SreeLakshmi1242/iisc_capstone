@@ -1,0 +1,33 @@
+Reservations
+Can I cancel segments in my booking and make the ticket open dated?
+No. You cannot change the segment to open dated. SkyWings does not provide open tickets.
+Can Multi-City bookings be amended online via View/ Change Booking?
+Yes, passengers may change the date and time of their Multi-City booking online through 
+View/ Change booking
+ as per their travel plan.
+If I update my booking through the View/Change Booking facility, how do I know that the changes have been stored in my booking?
+A confirmation message will be displayed on your screen once the changes have been updated in the reservation. Please ensure that the flight booking status is confirmed and the new reservation reflects the updated flight information
+What is booking on IVR?
+Booking on IVR (Interactive Voice Response) is a secure transaction platform which allows you to book and pay for your SkyWings flight tickets through a single call at our Call Center.
+Number of guests
+Through IVR, you could make a booking for up to 9 passengers per PNR.
+Booking time
+You can book through call center up to 2 hours before flight departure for domestic sectors and up to 4 hours prior to flight departure for international sectors.
+Infants
+Infant tickets can be booked through IVR.
+How can I Book ticket through call center?
+Please follow the steps below to book on IVR:
+Call the Customer Care at 0124-4973838 to book your ticket
+You would be directed to a Customer Care agent
+Please provide your itinerary details to the customer care agent
+Customer Care agent will create the PNR based on the itinerary and connect you to the IVR for payment
+You need to punch in your credit card number, CVV, Expiry date and one time secure password through your phone keypad.
+On successful card validation, an e-ticket will be created by the Customer Care and a copy would be emailed to the email address provided in your booking.
+What are the benefits of calling call center to make booking?
+The benefits of using the IVR system are:
+You can book your tickets while on the move
+Your entire transaction is completed in a single telephone call
+Payment through IVR ensures security of your credit card information, as the credit card information is punched in the IVR system and is not verbally informed to the Contact Centre agent. The credit card details are encrypted (128 bit secure socket layer, SSL) and are masked in the PNR / reservation record and are not accessible to the contact centre staff
+How should I book a ticket if I don’t have a surname?
+In case, you don’t have a surname mentioned in your government ID, you can use your first name as your surname during your booking.
+For example: A person with a name ‘XYZ’ can fill their surname as ‘XYZ’ during the booking. This way the booking would be made in the name of (Title) XYZ XYZ.

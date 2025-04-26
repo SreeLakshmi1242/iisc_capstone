@@ -1,0 +1,51 @@
+Payment 
+Support
+Are there any additional charges if I make my payment through the call centre?
+A booking fee of INR 350 for Domestic and INR 550 for International + GST per passenger per sector (or equivalent) will be applicable for all bookings made from the call center and airport ticketing counter
+How safe is it to give my Credit card number on the IVR?
+With the IVR system, your credit card number is punched through the keypad on your phone and not provided verbally to the Contact Centre agent. Your credit card details are encrypted and are masked in the PNR / reservation record and not accessible to the Customer Care agent. The entire process is fully automated and ensures security of your card information
+Are Debit cards accepted for bookings on IVR?
+No. Currently we accept only Credit cards for bookings on IVR.
+Which credit card types are accepted for booking on IVR?
+We accept MasterCard, Visa, Amex, Diners and JCB credit cards, issued in India, for bookings on IVR.
+Only MasterCard and Visa card are accepted for any card issued outside Indian boundaries. The travel date must be later than 7 days in case of payment being made on IVR through an International Credit card.
+Can I book through the call center using my credit card for another guest?
+While it is recommended to pay for your own flight ticket, you can pay for another guest using your credit card. However, in such a case the guest should carry a photocopy of (front side only) of the credit card used for purchase of the tickets attested by the credit card holder for verification at the Airport check-in counter.
+Would there be any agent to provide assistance during the IVR transaction?
+Yes. The customer care agent would be available during the call to help you until the entire ticketing transaction is completed.
+Will I need One Time Password (OTP) during the booking process?
+Yes, the IVR will prompt for One Time Password (OTP) during the payment process. The One Time Password can be generated on the call. You need to contact your bank for OTP before contacting the call center for making the reservation. You can call us for making your booking once the OTP is received from your card issuing bank.
+What is Convenience Fee?
+A non- refundable convenience fee of INR 199 for domestic and INR 399 for international per person per flight for Net banking/Credit Cards/Debit Cards/UPI payments is collected by the airlines for establishing, maintaining and operating the online flight booking system. This fee includes the charges paid by the airlines to the concerned Bank (varies from one Bank to another) for availing of such facilities.
+A non-refundable convenience fee of INR 100 per person per sector on all domestic bookings and INR 200 per person per sector on all international bookings will be charged on payments done through vouchers.
+The fees will be applicable on all bookings made through our mobile app and website.
+What is Verified by Visa (VBV) or MasterCard Secure Code (MSC) or Diner Club ProtectBuySM?
+VBV , ProtectBuy and MSC are service offered by Visa , Diner Club and MasterCard that allows you to complete online transaction securely. By authenticating and verifying your credit card details with an additional password it reduces the possibility of credit card fraud. This service is free of charge for you, the credit card holder.
+How to Register
+If you have a Visa, Diner Club or MasterCard go to your respective bank’s website where you will be asked to follow a simple step by step procedure to register for Verified by Visa, ProtectBuy or MasterCard Secure Code. After entering your credit card details you will be asked to create a password that will be used every time you make an online payment. Once complete you can continue making payments online.
+What if I have an American Express card?
+If you have an American Express card you will get one-time password from your bank as a security measure which you need to feed in on the payment page with your bank in order to process your payment.
+How do I make a payment on SkyWings website?
+Choose your desired flight plans and proceed to make a reservation where you will enter your credit card details such as name of cardholder, card number, expiry date, and CVV.
+SkyWings will connect to your credit card issuing bank’s website to verify if your card is secured by Verified by Visa, Diner Club or MasterCard SecureCode.
+A bank window will appear requesting a password.
+Once your password is verified you will be automatically directed back to SkyWings’s reservation page to complete your booking.
+Additional Charges
+A nominal non-refundable fee of INR 300 per person per flight for Net Banking / Debit Cards & Credit Cards will be charged as a Convenience fee.
+Cards Accepted:
+MasterCard
+Visa
+American Express
+Diners
+What if I want to make a payment on the website through my VISA Debit Card?
+Many debit cards can also be used as credit cards on our website thereby increasing the convenience of making payments for your SkyWings bookings. Be sure to register them using Verified by Visa with your respective bank as well.
+What if my bank doesn’t offer Verified by Visa, Diner Club or MasterCard SecureCode?
+It is mandatory for all credit cards issued in India to be verified by one or the other authentication services. If you are banking with an Indian bank and they do not offer this service we ask that you use an alternate credit card or another payment option. If your card is issued outside of India, your transaction may be processed without registering for one of the services. To continue to enjoy a hassle-free booking experience with added security, make sure to register for an authentication service (if you have a Diner Club, MasterCard or Visa Debit/Credit Card) with your respective bank.
+Which all are the other form of payments accepted at SkyWings?
+Debit cards, Credit cards, Net banking, Travel Vouchers, Mobikwik and Premier Miles (Citibank)
+Which all currencies are accepted at SkyWings?
+British Pound, Euro, Indian Rupees, Nepalese Rupee, Omani Rial, Qatari Riyal, Singapore Dollar, Thai Bhat, United Arab Emirates Dirham, Sri Lankan Rupee and US Dollar.
+Which cards are supported for transactions that are not in INR?
+Any card issued by non-Indian banks can be used for transactions. Cards issued by Indian banks do not currently support transactions in any currency other than INR.
+How can I conduct transactions for an international flight with my Indian card?
+You can make your flight selection in INR for any payment via your Indian card on the website. Alternatively, you can make the booking seamlessly on our app without changing the currency.

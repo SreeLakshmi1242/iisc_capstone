@@ -1,0 +1,2493 @@
+Add-on 
+Services
+How can I get a print out of my ticket/itinerary?
+Click on 
+View/Change Booking
+ on our home page and retrieve your reservation by entering your PNR (a six digit code generally sent as an SMS after you make a reservation) and email address or last name. Once it is reservation is retrieved you can take a print out of your ticket.
+Note: If you have made the reservation through a travel agency you may have to get your email address updated in order to retrieve the booking online.
+How can I print/re-print my Web Check-in boarding pass?
+If you have already Web Checked-in, you will need to click on the 
+Check-in
+ link on our home page and retrieve your reservation using your PNR (a six digit code generally sent as an SMS after you make a reservation), email address or last name. Once your reservation is retrieved you can print or reprint your boarding pass.
+How do I book snacks for my flight online and what are the charges?
+You can book snacks* online through the 
+view/change booking
+ section on our homepage. The snacks can be added only up to 24 hours prior to the scheduled departure time.
+If such service is booked through SkyWings’s call centre, an additional amount as applicable will be charged.
+Snack
+Domestic Flights
+International Flights
+Vegetarian
+INR 250 per sector
+INR 500 per sector
+Non-Vegetarian
+INR 300 per sector
+INR 500 per sector
+How can I book a specific seat for myself on the flight?
+Passengers can book specific seats on the flight through our website or at the airport. The charges for booking seats are as follows: 
+Domestic
+Preferential Seat* Fee for ATRs
+INR
+Rows 1,2,19,20
+500
+Rows 3,4,5
+Nil
+Rows 6-8
+100
+Rows 9-15
+200
+Rows 16-18
+300
+ 
+Preferential Seat* fee for A320-180 seater
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+2000
+1
+Middle
+1500
+2,3
+All
+900
+4,5
+Window/Aisle
+800
+4,5
+Middle
+800
+  6-10 
+All
+350
+12,13
+All
+1500
+  11-20
+Window/Aisle
+400
+  11-20
+Middle
+350
+21-30
+Window/Aisle
+250
+21-24
+Middle
+250
+25-30
+Middle
+Free
+ 
+Preferential Seat* fee for 
+A320-186 seater
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+2000
+1
+Middle
+1500
+2,3
+All
+900
+4,5
+Window/Aisle
+800
+4,5
+Middle
+800
+  6-10 
+All
+350
+12,13
+All
+1500
+  11-20
+Window/Aisle
+400
+  11-20
+Middle
+350
+21-31
+Window/Aisle
+250
+21-25
+Middle
+250
+26-31
+Middle
+Free
+ 
+Preferential Seat* fee for 
+A321-222 seater
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+2000
+1
+Middle
+1500
+2,3
+All
+900
+4,5
+Window/Aisle
+800
+4,5
+Middle
+800
+6-15
+All
+350
+18, 28
+All
+1500
+16-27
+Window/Aisle
+400
+16-27
+Middle
+350
+29-38
+Window/Aisle
+250
+29-32
+Middle
+250
+33-38
+Middle
+Free
+ 
+Preferential Seat* fee for 
+A321-232 seater
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+2000
+1
+Middle
+1500
+2,3
+All
+900
+4,5
+Window/Aisle
+800
+4,5
+Middle
+800
+(6-16)
+All
+350
+19, 28B, 28C, 28D, 28E, 29A, 29F
+All
+1500
+17-27
+Window/Aisle
+400
+17-27
+Middle
+350
+29C, 29D, 30-39
+Window/Aisle
+250
+29-33
+Middle
+250
+34-39
+Middle
+Free
+ 
+If such service is booked through SkyWings’s call centre, an additional amount as applicable will be charged.
+International
+Preferential Seat* Fee for 
+A320-180 seater
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+3000
+1
+Middle
+2500
+2,3
+All
+1050
+4,5
+Window/Aisle
+1000
+4,5
+Middle
+1000
+  6-11
+Window/Aisle
+450
+  4-11
+Middle
+400
+12,13
+All
+2500
+14-20
+Window/Aisle
+450
+14-20
+Middle
+400
+21-30
+Window/Aisle
+350
+21-24
+Middle
+250
+25-30
+Middle
+Free
+ 
+Preferential Seat* Fee for 
+A320-186 seater
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+3000
+1
+Middle
+2500
+2,3
+All
+1050
+4,5
+Window/Aisle
+1000
+4,5
+Middle
+1000
+  6-11
+Window/Aisle
+450
+  4-11
+Middle
+400
+12,13
+All
+2500
+14-20
+Window/Aisle
+450
+14-20
+Middle
+400
+21-31
+Window/Aisle
+350
+21-25
+Middle
+250
+26-31
+Middle
+Free
+ 
+Preferential Seat* fee for 
+A321-222 seater
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+3000
+1
+Middle
+2500
+2,3
+All
+1050
+4,5
+Window/Aisle
+1000
+4,5
+Middle
+1000
+ 6 - 27
+Window/Aisle
+450
+ 4 - 27
+Middle
+400
+18, 28
+All
+2500
+29-38
+Window/Aisle
+350
+29-32
+Middle
+250
+33-38
+Middle
+Free
+ 
+Preferential Seat* fee for 
+A321-232 seater
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+3000
+1
+Middle
+2500
+2,3
+All
+1050
+4,5
+Window/Aisle
+1000
+4,5
+Middle
+1000
+ 6 - 27
+Window/Aisle
+450
+ 6 - 27
+Middle
+400
+19, 28, 29A, 29F
+All
+2500
+29-39
+Window/Aisle
+350
+29-33
+Middle
+250
+34-39
+Middle
+Free
+ 
+Preferential Seat* fee for 77W77E - 400/531 seater
+Seat Type
+Rates (INR)
+Row 2
+XL
+3500
+Row 3-9
+Regular
+1200
+Row 10
+Regular
+1200
+Row 12
+XL
+3500
+Row 13 
+Regular
+1200
+Row 13
+XL
+3500
+Row 14 - 27 
+Regular
+1200
+Row 28 
+Regular
+1200
+Row 31 
+XL
+3500
+Row 32
+XL
+3500
+Row 32
+Regular
+900
+Row 32
+Regular
+1000
+Row 33 - 45
+Regular
+900
+Row 33 - 45
+Regular
+1000
+Row 46, 47
+Regular
+1000
+Row 46, 47
+Regular
+900
+Row 49
+XL
+3500
+Row 50 - 57 
+Regular
+900
+Row 50 - 57 
+Regular
+750
+Row 58 - 61
+Regular
+750
+Row 58 - 61
+Regular
+900
+Row 62, 63 
+Regular
+900
+Row 62, 63 
+Regular
+750
+ 
+Preferential Seat* fee for B 737 Max 8 – 176 seater
+Seat Type
+Rates (INR)
+Row 1 & 2
+All seats - XXL
+5000
+Row 3
+Window / Aisle - XL
+4000
+Row 3
+Middle - XL
+4000
+Row 4 , 5
+Window / Aisle
+1200
+Row 4, 5
+Middle
+1200
+Row 6 - 12
+Window / Aisle
+1000
+Row 6 - 12
+Middle
+900
+Row 14, 15
+Window / Aisle - XL
+4000
+Row 14, 15
+Middle - XL
+4000
+Row 16 - 22
+Window / Aisle
+1000
+Row 16 - 22
+Middle
+900
+Row 23 - 31
+Window / Aisle
+900
+Row 23 - 31
+Middle
+750
+ 
+Seat Fee for ATRs
+Regular rate (INR) For JAF
+Rows 1,2,19,20
+2200
+Rows 3,4,5
+Free
+Rows 6-8
+300
+Rows 9-15
+400
+Rows 16-18
+450
+ 
+*
+In case of 180 seater aircraft row number 30 is non reclining
+If such service is booked through SkyWings’s call centre, an additional amount as applicable will be charged.
+You can skip selecting a preferred seat and complete your booking. SkyWings will auto-assign a seat prior to your travel
+What is Fast Forward Service?
+What Fast Forward?
+SkyWings offers Fast Forward Service for a hassle free experience at the airport. This Service helps passengers save time By priority check-in and anytime boarding.
+The FFWD service can be purchased through SkyWings’s website (
+www.goSkyWings.in
+) and Call center until two (2) hours prior to domestic departures and up until four (4) hours prior to international departures and at the airport up until the closure of the check-in process for the relevant flight for which the passenger intends to purchase the FFWD service
+How much does it cost?
+A nominal fee of INR 650 per person per sector for domestic and INR 850 per person per sector for international is applicable if you wish to choose this Service.
+* Pre-book Fast Forward service and get up to 20% off on above rates.
+Please note that if the payment is to be made in any other currency than Indian Rupee, the fee(s) will be calculated as per the conversion rate prevalent at the time of payment.
+Where all is it available?
+Fast Forward service is available for travel on the following sectors:
+In case of domestic travel
+Agartala, Agra, Ahmedabad, Aizwal, Amritsar, Aurangabad, Ayodhya Airport, Bagdogra, Bareilly, Belagavi, Bengaluru, Bhopal, Bhubaneswar, Chandigarh, Chennai, Coimbatore, Darbangha, Dehradun, Deoghar, Dharamshala, Dibrugarh, Dimapur, Diu Airport, Durgapur, Gaya, Goa, Gorakhpur, Guwahati, Gwalior, Hubli, Hyderabad, Imphal, Indore, Itanagar, Jabalpur, Jaipur, Jammu, Jharsuguda Airport, Jodhpur, Jorhat, Kadapa, Kannur, Kanpur, Khajuraho Airport, Kochi, Kolhapur, Kolkata, Kozhikode, Kurnool, Leh, Lucknow, Madurai, Mangalore, Mumbai, Mysuru, Nagpur, New Delhi, Pantnagar, Patna, Port Blair, Pryagraj, Pune, Raipur, Rajahmundry, Rajkot, Ranchi, Salem Airport, Shillong, Shirdi, Shivamogga, Silchar, Srinagar, Surat, Thiruvananthapuram, Tiruchirappalli, Tirupati, Tuticorin, Udaipur, Vadodara, Varanasi, Vijayawada and Visakhapatnam.
+In case of international travel
+The following sectors with the point of origin at an Indian airport with international flights – Ahmedabad, Amritsar, Bangalore, Chandigarh, Chennai, Cochin, Hyderabad, Kannur, Kolkata, Kozhikode, Lucknow, Mumbai, New Delhi, Thiruvananthapuram, Tiruchirappalli, Varanasi and Vijayawada.
+The following sectors with the point of origin at an airport outside of India - Abu Dhabi, Almaty, Bahrain, Baku, Bangkok, Colombo, Jaffna , Dammam/Madinah, Dhaka, Doha, Dubai, Hanoi, Ho Chi Minh, Hong Kong, Istanbul, Jakarta, Jeddah, Kathmandu, Kuala Lumpur, Kuwait, Male, Muscat, Nairobi, Phuket, Ras Al Khaimah, Riyadh, Sharjah, Singapore,Tashkent and Tbilisi.
+What happens in case of booking cancellation?
+In case the booking is cancelled, the fee will be refunded.
+What is SW Upgrade?
+SW Upgrade entitles you to the following benefits in INR 2500 per passenger per flight for Domestic and INR 3000 for International:
+Cancel/change your booking as many times as you like.
+Select the seat of your choice, including extra legroom, window and aisle seats.
+Enjoy delicious In-flight snacks*.
+*One food item and one beverage
+What is SkyWings Early?
+SkyWings Early allows domestic passengers who land early at an Airport to get a seat on the earliest SkyWings flight out just for INR 1800.
+Terms and conditions:
+This service is applicable to all passengers travelling on a domestic flight, wanting to prepone their flight
+Passenger must be physically present at the airport as the change can be done only at the airport
+Changes can be done only for preponing the flight and not for postponing the flight
+The time difference between the desired flight and the booked flight should be maximum 4 hours, this means if the original flight booked is at 1600 hours, then this flight can be preponed to a flight which is departing at or after 1200 hrs. The basis to calculate the difference of 4 hours, has to be between the departure time of the original flight and the desired flight and not on the basis of the passenger reporting time
+Request for such change will be confirmed only 60 minutes before the departure of the desired flight subject to the availability of seats and a non-refundable fee of INR 1800 per passenger (fee is subject to change)
+Unaccompanied minors cannot ask for change of flight themselves, only their parents/guardian at the origin station can request for this service
+This service shall not be extended to passengers booked under group fares
+This service is not applicable on international flights, whether in isolation or in connection with a domestic flight
+What is hold booking?
+Holding bookings assist our passengers in reserving tickets prior to making the payment at the nearest ticketing center or through our website. 
+Passengers may call our call center to hold a reservation or may hold the reservation through Mobile application.
+The reservations processed from Mobile Application or call centre are placed on hold for 15 minutes from the time of booking.
+Can add-on’s be added to group bookings?
+Document
+Yes, the list of add-on’s available and the charges are in the table below.
+Kindly Note-:
+ For Group bookings kindly consider cancellation/change fee as per the timeline mentioned under 
+Terms and conditions
+.
+If such service is booked through SkyWings’s call centre, an additional amount as applicable will be charged.
+Domestic
+Currency
+Cancellation fee
+Change fee
+INR
+2999
+2250
+SGD
+62
+47
+AED
+163
+127
+QAR
+163
+110
+KWD
+13
+9
+OMR
+17
+11
+USD
+45
+30
+MYR
+185
+126
+BDT
+3624
+2420
+NPR
+4808
+3600
+HKD
+340
+228
+THB
+1380
+990
+SAR
+167
+113
+For domestic bookings, customers can make any changes or cancellations free of charge within 24 hours of booking, if booked at least 7 days before the travel dates.
+ 
+Baggage (Domestic)
+3 kg Prepaid
+5 kg Prepaid
+10 Kg Prepaid
+15 Kg Prepaid
+20 Kg Prepaid
+30Kg Prepaid
+At Airport Per Kg
+INR
+1515
+2525
+4950
+7260
+9000
+13500
+600
+SGD
+30
+51
+99
+145
+180
+270
+15
+AED
+82
+136
+267
+392
+486
+729
+40
+THB
+667
+1111
+2178
+3194
+3960
+5940
+400
+OMR
+8
+13
+25
+36
+45
+68
+4
+NPR
+2424
+4040
+7920
+11616
+14400
+21600
+1200
+USD
+20
+33
+64
+94
+117
+176
+11
+QAR
+73
+121
+238
+348
+432
+648
+40
+EUR
+18
+30
+59
+87
+108
+162
+11
+GBP
+15
+25
+50
+73
+90
+135
+9
+BDT
+1727
+2879
+5643
+8276
+10260
+15390
+1000
+KWD
+6
+10
+20
+29
+36
+54
+3
+MYR
+76
+126
+248
+363
+450
+675
+40
+SAR
+74
+124
+243
+356
+441
+662
+40
+HKD
+158
+263
+515
+755
+936
+1404
+90
+CNY
+129
+215
+421
+617
+765
+1148
+80
+BHD
+7
+12
+23
+34
+42
+62
+4
+TRY
+Basis on conversion
+LKR
+Basis on conversion
+Note: 
+For Bookings made on or after October 1, 2020, 15 kgs per person (One piece only).  Baggage in excess of 15 kgs will be subject to additional charges of INR 500 per kg. Additional pieces of Baggage will be subject to additional charges of INR 900 per piece in addition to the excess baggage charges of INR 600 per kg. Excess Baggage charges are non-refundable in case of no shows and gate no shows. For Bookings made between May 21, 2020 and September 30, 2020 (inclusive) for travel up to November 24, 2020, the Checked-in Baggage Allowance will be 20Kg (one piece only) instead of 15Kg.
+ 
+Baggage International (Connection)
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+8 Kg prepaid
+1600
+32
+86.4
+752
+9.44
+2864
+25.6
+86.4
+24
+19.2
+1904
+7.36
+15 Kg Prepaid
+3000
+60
+162
+1410
+17.7
+5370
+48
+162
+45
+36
+3570
+13.8
+30 Kg Prepaid
+6000
+120
+324
+2820
+35.4
+10740
+96
+324
+90
+72
+7140
+27.6
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Special Baggage Fee (Airport Charges)
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+2000
+40
+110
+880
+10
+3200
+25
+100
+25
+20
+2400
+10
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sports Equipment Handling Fees (Pre-book charges)
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+1500
+30
+81
+660
+8
+2400
+20
+72
+18
+15
+1800
+6
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Convenience Fee
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+Credit Cards/ Debit Cards / Mobile App / Net Banking
+149
+10
+29
+264
+3
+592
+7
+29
+7
+7
+517
+3
+Voucher
+100
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Booking Fee
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+350
+7
+19
+165
+2
+627
+6
+20
+5
+5
+417
+2
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Infant(Domestic)
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+1750
+35
+95
+770
+9
+2800
+20
+85
+20
+20
+1995
+7
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Itinerary Print Fee
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+50
+1
+3
+26
+0.3
+80
+1
+3
+1
+1
+62
+0.200
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Veg Snack* - Domestic
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+300
+6
+16
+130
+1.65
+480
+4
+15
+4
+3
+358
+1.3
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Non-Veg Snack* - Domestic
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+350
+7
+18
+151
+1.9
+560
+5
+18
+5
+4
+418
+1.5
+If such service is booked through SkyWings’s call centre, an additional amount as applicable will be charged.
+ 
+#Please note that if the payment is to be made in any other currency than Indian Rupee, the Baggage Fee will be calculated as per the conversion rate prevalent at the time of payment.
+Preferential Seat* Fee for ATRs
+INR
+Rows 1,2,19,20
+500
+Rows 3,4,5
+Nil
+Rows 6-8
+100
+Rows 9-15
+200
+Rows 16-18
+300
+ 
+Preferential Seat* fee for A320s
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+2000
+1
+Middle
+2000
+2,3
+All
+900
+  4-5 
+All
+800
+  6-10 
+All
+350
+12,13
+All
+1500
+  11-20
+Window/Aisle
+400
+  11-20
+Middle
+350
+21-31
+Window/Aisle
+250
+21-25
+Middle
+250
+26-31
+Middle
+200
+ 
+Preferential Seat* fee for A321
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+2000
+1
+Middle
+2000
+2,3
+All
+900
+4-5
+All
+800
+6-16
+All
+350
+19, 28B, 28C, 28D, 28E, 29A, 29F
+All
+1500
+17-27
+Window/Aisle
+400
+17-27
+Middle
+350
+29C, 29D, 30-39
+Window/Aisle
+250
+29-33
+Middle
+250
+34-39
+Middle
+200
+If such service is booked through SkyWings’s call centre, an additional amount as applicable will be charged.
+International
+ 
+Currency
+Cancellation fee
+Change Fee
+Number of days left for departure
+ 
+0-3 (Days)
+4 Days and above
+0-3 (Days)
+4 Days and above
+ 
+Indian-Sub continent
+Ex-India to Colombo / Jaffna
+INR
+2999
+2250
+3999
+2999
+Ex-India to Dhaka
+INR
+2999
+2250
+3999
+2999
+Ex-India to Kathmandu
+INR
+2999
+2250
+3999
+2999
+Ex-Dhaka to India
+BDT
+3309
+2420
+4561
+3624
+Ex-Kathmandu to India
+NPR
+4798
+3600
+6410
+4808
+South east, middle east and rest of Asia destination
+Ex-India to Hong kong
+INR
+4000
+3750
+6000
+5500
+Ex-India to Singapore
+INR
+3999
+3250
+6499
+5499
+Ex-India to Bangkok/Phuket
+INR
+3999
+3250
+6499
+5499
+Ex-India to Kuala Lumpur
+INR
+3999
+3250
+5499
+4499
+Ex-India to Jakarta
+INR
+3999
+3250
+6499
+5499
+Ex-India to Muscat
+INR
+3999
+3250
+6499
+5499
+Ex-India to Male
+INR
+3999
+3250
+5499
+4499
+Ex-India to Kuwait
+INR
+4749
+4000
+7499
+6499
+Ex-India to Dubai/Sharjah/Abu Dhabi/ Ras Al Khaimah
+INR
+3999
+3250
+5999
+4999
+Ex-India to Doha
+INR
+3999
+3250
+5499
+4499
+Ex-India to Jeddah
+INR
+3999
+3250
+6499
+5499
+Ex-India to Dammam/Madinah
+INR
+3999
+3250
+6499
+5499
+Ex-India to Chengdu
+INR
+3999
+3250
+5499
+4499
+Ex-India to Hanoi
+INR
+3999
+3250
+5499
+4499
+Ex-India to Ho Chi Minh
+INR
+3999
+3250
+5499
+4499
+Ex-India to Riyadh
+INR
+3999
+3250
+6499
+5499
+Ex-India to Yangon
+INR
+3999
+3250
+5499
+4499
+Ex-India to Bahrain
+INR
+3999
+3250
+6499
+5499
+Ex-India to Denpasar
+INR
+4749
+4000
+6499
+5499
+Ex-Hong kong to India
+HKD
+425
+425
+1100
+1100
+Ex-Singapore to India
+SGD
+81
+67
+108
+92
+Ex-Bangkok/Phuket to India
+THB
+1760
+1430
+3220
+2800
+Ex-Kuala Lumpur to India
+MYR
+221
+181
+329
+275
+Ex-Muscat to India
+OMR
+20
+16
+30
+25
+Ex-Male to India
+USD
+52
+43
+79
+67
+Ex-Kuwait to India
+KWD
+16
+13
+30
+25
+Ex-Dubai/Sharjah/Abu Dhabi/Ras Al Khaimah to India
+AED
+218
+181
+302
+260
+Ex-Doha to India
+QAR
+193
+158
+307
+257
+Ex-Dammam/Madinah to India
+SAR
+197
+162
+296
+246
+Ex-Jeddah to India
+SAR
+197
+161
+296
+246
+Ex-Bahrain to India
+BHD
+20
+16
+26
+22
+Ex-Chengdu to India
+CNY
+331
+268
+548
+455
+Ex-Hanoi to India
+USD
+52
+43
+79
+67
+Ex-Ho Chi Minh to India
+USD
+52
+43
+79
+67
+Ex- Riyadh to India
+SAR
+197
+161
+296
+246
+Ex-Yangon to India
+USD
+52
+43
+79
+67
+Ex - Jakarta
+IDR
+726557
+587500
+1281307
+1093807
+Ex- Denpasar Bali
+IDR
+726557
+587500
+1281307
+1093807
+Africa Sectors
+Ex-India to Nairobi
+INR
+5749
+5000
+8499
+7499
+Ex - Nairobi
+USD
+72
+64
+106
+95
+Europe sectors
+Ex-India to Istanbul
+INR
+4749
+4000
+6999
+5999
+Ex-Istanbul to India
+INR
+4749
+4000
+6999
+5999
+Ex-India to Baku
+INR
+4749
+4000
+6999
+5999
+Ex-India to Tibisli
+INR
+4749
+4000
+6999
+5999
+Ex-India to Tashkent
+INR
+4749
+4000
+6999
+5999
+Ex-India to Almaty
+INR
+4749
+4000
+6999
+5999
+Ex - Almaty
+USD
+70
+62
+122
+111
+Ex - Tashkent
+EUR
+114
+106
+122
+111
+Ex - Baku
+EUR
+52
+45
+77
+67
+Ex - Tibisli
+EUR
+52
+45
+122
+111
+ 
+Infant(International)
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+2600
+50
+140
+1145
+13
+4160
+35
+125
+30
+25
+2965
+10
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Itinerary Print Fee - INTL
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+50
+1
+3
+26
+0.3
+80
+1
+3
+1
+1
+62
+0.200
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Veg Snacks - International
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+300
+6
+16
+130
+1.65
+480
+4
+15
+4
+3
+358
+1.3
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Non-Veg Snacks - International
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+350
+7
+18
+151
+1.9
+560
+5
+18
+5
+4
+418
+1.5
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Special Baggage Fee (Airport Charges)
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+3500
+70
+190
+1545
+20
+5600
+45
+170
+45
+35
+4200
+15
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sports Equipment Handling Fees (Pre-book charges)
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+3000
+60
+162
+1320
+15
+4800
+39
+144
+36
+30
+3600
+12
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Convenience Fee - INTL
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+(Credit Cards / Debit Cards / Mobile App / Net Banking)
+299
+15
+38
+335
+5
+940
+12
+38
+11
+10
+795
+5
+Voucher
+200
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Booking Fee
+INR
+SGD
+AED
+THB
+OMR
+NPR
+USD
+QAR
+EUR
+GBP
+BDT
+KWD
+ 
+550
+12
+32
+282
+4
+1074
+10
+34
+9
+9
+714
+3
+ 
+Preferential Seat* Fee for A320
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+3000
+1
+Middle
+3000
+2,3
+All
+1050
+4,5
+All
+1000
+  6-11
+Window/Aisle
+450
+  6-11
+Middle
+450
+12,13
+All
+2500
+14-20
+Window/Aisle
+450
+14-20
+Middle
+400
+21-31
+Window/Aisle
+350
+21-25
+Middle
+300
+26-31
+Middle
+300
+ 
+Preferential Seat* fee for A321
+Seat Type
+Rates (INR)
+1
+Window/Aisle
+3000
+1
+Middle
+3000
+2,3
+All
+1050
+4,5
+All
+1000
+ 6 - 27
+Window/Aisle
+450
+ 6 - 27
+Middle
+400
+19, 28, 29A, 29F
+All
+2500
+29-39
+Window/Aisle
+350
+29-33
+Middle
+300
+34-39
+Middle
+300
+ 
+Preferential Seat* fee for 77W77E - 400/531 seater
+Seat Type
+Rates (INR)
+Row 2
+XL
+3500
+Row 3-9
+Regular
+1500
+Row 10
+Regular
+1500
+Row 12
+XL
+3500
+Row 13 
+Regular
+1500
+Row 13
+XL
+3500
+Row 14 - 27 
+Regular
+1500
+Row 28 
+Regular
+1500
+Row 31 
+XL
+3500
+Row 32
+XL
+3500
+Row 32
+Regular
+1000
+Row 32
+Regular
+1200
+Row 33 - 45
+Regular
+1000
+Row 33 - 45
+Regular
+1200
+Row 46, 47
+Regular
+1200
+Row 46, 47
+Regular
+1000
+Row 49
+XL
+3500
+Row 50 - 57 
+Regular
+1000
+Row 50 - 57 
+Regular
+750
+Row 58 - 61
+Regular
+750
+Row 58 - 61
+Regular
+1000
+Row 62, 63 
+Regular
+1000
+Row 62, 63 
+Regular
+750
+ 
+Preferential Seat* fee B 737 Max 8 – 176 seater
+Seat Type
+Rates (INR)
+Row 1 & 2
+All seats - XXL
+5000
+Row 3
+Window / Aisle - XL
+4000
+Row 3
+Middle - XL
+4000
+Row 4 , 5
+Window / Aisle
+1200
+Row 4, 5
+Middle
+1200
+Row 6 - 12
+Window / Aisle
+1000
+Row 6 - 12
+Middle
+900
+Row 14, 15
+Window / Aisle - XL
+4000
+Row 14, 15
+Middle - XL
+4000
+Row 16 - 22
+Window / Aisle
+1000
+Row 16 - 22
+Middle
+900
+Row 23 - 31
+Window / Aisle
+900
+Row 23 - 31
+Middle
+750
+ 
+If such service is booked through SkyWings’s call centre, an additional amount as applicable will be charged.
+Baggage (International)
+Currency
+5kg Pre-paid
+10kg Pre-paid
+15kg Pre-paid
+20kg Pre-paid
+30kg Pre-paid
+At Airport Per Kg
+Ex-India to Bangkok/Phuket 
+INR
+3500
+7000
+10500
+14000
+21000
+850
+Ex-India to Dubai/ Sharjah / Abu Dhabi / Ras Al Kaimah
+INR
+4500
+9000
+13500
+18000
+27000
+1000
+Ex-India to Singapore 
+INR
+2760
+5520
+8280
+11040
+16560
+600
+Ex-India to Kuala Lumpur
+INR
+4500
+9000
+13500
+18000
+27000
+1000
+Ex-India to Hanoi / Ho Chi Minh
+INR
+3500
+7000
+10500
+14000
+21000
+850
+Ex-India to Yangon
+INR
+2760
+5520
+8280
+11040
+16560
+600
+Ex-India to Dhaka
+INR
+2760
+5520
+8280
+11040
+16560
+600
+Ex-India to Muscat
+INR
+4500
+9000
+13500
+18000
+27000
+1100
+Ex-India to Male
+INR
+4500
+9000
+13500
+18000
+27000
+1000
+Ex-India to Doha
+INR
+4500
+9000
+13500
+18000
+27000
+1000
+Ex-India to Hongkong
+INR
+6900
+13800
+20700
+27600
+41400
+1500
+Ex-India to Kuwait
+INR
+5520
+11040
+16560
+22080
+33120
+1200
+Ex-India to Istanbul
+INR
+9000
+18000
+27000
+36000
+54000
+2000
+Ex-India to Chengdu / Guangzhou
+INR
+5520
+11040
+16560
+22080
+33120
+1200
+Ex-India to Riyadh/ Jeddha
+INR
+5520
+11040
+16560
+22080
+33120
+1200
+Ex- India to Colombo / Jaffna
+INR
+3500
+7000
+10500
+14000
+21000
+850
+Ex-India to Bahrain
+INR
+4500
+9000
+13500
+18000
+27000
+1000
+India to Kathmandu
+INR
+2500
+5000
+7500
+10000
+15000
+550
+Ex-India to Baku
+INR
+9000
+18000
+27000
+36000
+54000
+2000
+Ex-India to Tibisli
+INR
+9000
+18000
+27000
+36000
+54000
+2000
+Ex-India to Jakarta
+INR
+5520
+11040
+16560
+22080
+33120
+1200
+Ex-India to Nairobi
+INR
+4500
+9000
+13500
+18000
+27000
+1000
+Ex-India to Almaty
+INR
+9000
+18000
+27000
+36000
+54000
+2000
+Ex-India to Tashkent
+INR
+9000
+18000
+27000
+36000
+54000
+2000
+Ex-India to Denpasar Bali
+INR
+5520
+11040
+16560
+22080
+33120
+1200
+Ex - Tashkent
+EUR
+90
+180
+270
+360
+540
+21
+Ex - Almaty
+USD
+95
+190
+285
+380
+570
+22
+Ex - Baku
+EUR
+90
+180
+270
+360
+540
+21
+Ex - Tibisli
+EUR
+90
+180
+270
+360
+540
+21
+Ex - Jakarta
+IDR
+1006000
+2012000
+3018000
+4025000
+6037000
+219000
+Ex - Nairobi
+USD
+65
+130
+195
+260
+390
+15
+Ex-Singapore
+SGD
+119
+238
+356
+475
+713
+25
+Ex-Dubai/Sharjah/Abu Dhabi/Ras Al Khaimah
+AED
+285
+570
+855
+1140
+1710
+60
+Ex-Doha
+QAR
+285
+570
+855
+1140
+1710
+60
+Ex-Colombo / Jaffna
+LKR
+15000
+30000
+45000
+60000
+90000
+3500
+Ex-Kuwait
+KWD
+19
+38
+57
+76
+114
+4
+Ex-Muscat
+OMR
+25
+50
+75
+100
+150
+6
+Ex-Male
+USD
+65
+130
+195
+260
+390
+15
+Ex-Kuala Lumpur
+MYR
+285
+570
+855
+1140
+1710
+60
+Ex-Dhaka
+BDT
+4500
+9000
+13500
+18000
+27000
+1100
+Ex-Kathmandu
+NPR
+3040
+6080
+9120
+12160
+18240
+640
+Ex-Istanbul
+TRY
+2250
+4500
+6750
+9000
+13500
+500
+Ex-Hong kong
+HKD
+665
+1330
+1995
+2660
+3990
+140
+Ex-Bangkok/Phuket
+THB
+1625
+3250
+4875
+6500
+9750
+400
+Ex-Chengdu
+CNY
+475
+950
+1425
+1900
+2850
+100
+Ex-Guangzhou
+CNY
+475
+950
+1425
+1900
+2850
+100
+Ex-Yangon
+USD
+48
+95
+143
+190
+285
+10
+Ex-Hanoi/Ho Chi Minh
+USD
+50
+100
+150
+200
+300
+12
+Ex- Jeddah
+SAR
+309
+618
+926
+1235
+1853
+65
+Ex- Bahrain
+BHD
+25
+50
+75
+100
+150
+6
+Ex- Riyadh
+SAR
+309
+618
+926
+1235
+1853
+65
+Ex- Denpasar Bali
+IDR
+1006000
+2012000
+3018000
+4025000
+6037000
+219000
+ 
+#Please note that if the payment is to be made in any other currency than Indian Rupee, the fee(s) will be calculated as per the conversion rate prevalent at the time of payment.
+If such service is booked through SkyWings’s call centre, an additional amount as applicable will be charged.
+ 

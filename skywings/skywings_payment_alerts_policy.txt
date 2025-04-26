@@ -1,0 +1,14 @@
+Payment 
+Alerts
+The amount has been deducted from my account however, I have not received the ticket?
+There may be two types of situations where the amount may be deducted from your account but the ticket has not been generated:
+Situation 1: The amount has been deducted from my card/ account; however I have not received the ticket? 
+Situation2: The transaction has been captured by SkyWings via Net Banking, Maestro, ATM/Debit card, EzeClick, Citi Bank Reward Points, however, the ticket has not been generated. 
+The situations above can have one of the two following outcomes: 
+The amount received by us will automatically be refunded within 5 business days
+In case it is not refunded then you may share the following Information with our contact center team or contact our customer experience team, please 
+click here
+.
+Transaction ID sent by SkyWings via email at the time of initiating the payment along with amount, date and time of transaction OR
+PGI Reference number along with amount, date and time of transaction OR
+Scanned copy of bank statement
