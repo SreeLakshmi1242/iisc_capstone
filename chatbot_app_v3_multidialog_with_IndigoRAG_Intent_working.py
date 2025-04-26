@@ -205,7 +205,10 @@ def load_answer(question):
     st.session_state.sessionMessages.append(AIMessage(content=assistant_answer.content))
     return assistant_answer.content
 
-
+if 'sessionMessages' not in st.session_state:
+    st.session_state.sessionMessages = [
+        SystemMessage(content = 'You are a kind assistant')
+    ]
 # ----------------------------
 # Main Chat Interface
 # ----------------------------
