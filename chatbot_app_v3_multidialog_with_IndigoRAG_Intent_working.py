@@ -201,7 +201,7 @@ sentiment_pipe = pipeline(
     "sentiment-analysis",
     model="cardiffnlp/twitter-roberta-base-sentiment-latest",
     device=-1,  # Force CPU
-    use_auth_token=True  # Use Hugging Face token if needed
+    use_auth_token=hf_token  # Use Hugging Face token if needed
 )
 
 intent_pipe = pipeline(
