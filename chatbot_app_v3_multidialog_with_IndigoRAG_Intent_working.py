@@ -135,7 +135,7 @@ system_instruction = "The assistant should provide detailed explanations."
 
 # Answer:
 # """
-data_folder = './data'
+data_folder = './skywings'
 
 documents = []
 
