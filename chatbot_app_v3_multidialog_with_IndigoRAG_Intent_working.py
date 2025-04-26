@@ -139,21 +139,13 @@ system_instruction = "The assistant should provide detailed explanations."
 # Create the prompt template
 condense_question_prompt = PromptTemplate(
     input_variables=["context", "question"],
-    template="""
-You are an airline customer service assistant for IndiGo Airlines. 
+    template= """Given the following context and a question, generate an answer based on this context only.
+In the answer try to provide as much text as possible from "response" section in the source document context without making much changes.
+If the answer is not found in the context, kindly state "I don't know." Don't try to make up an answer.
 
-Answer the user's question based **only** on the context below. Do not repeat the context or the question. If you don't know the answer, say you don't know.
+CONTEXT: {context}
 
-Context:
-{context}
-
-Question:
-{question}
-
-Answer:
-
-Answer in 5 lines only. Do not return context or prompt rules
-"""
+QUESTION: {question}"""
 
 
 )
