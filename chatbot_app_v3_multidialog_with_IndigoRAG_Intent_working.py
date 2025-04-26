@@ -25,9 +25,8 @@ st.title("📄 Chat with Documents - Local LLM + FAISS")
 st.sidebar.header("Configuration")
 
 # Model selection
-model_name = st.sidebar.selectbox("Select a model", [
-     "HuggingFaceH4/zephyr-7b-beta"
-])
+model_name = "HuggingFaceH4/zephyr-7b-beta"
+
 
 # FAISS folder path
 # faiss_folder = st.sidebar.text_input("FAISS Index Folder Path", value="./data")
