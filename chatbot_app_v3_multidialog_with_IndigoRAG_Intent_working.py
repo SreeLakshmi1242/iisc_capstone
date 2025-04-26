@@ -1,5 +1,6 @@
 import os
 import time
+import pandas
 import streamlit as st
 from pathlib import Path
 from transformers import pipeline
