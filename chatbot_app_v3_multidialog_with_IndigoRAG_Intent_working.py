@@ -12,6 +12,12 @@ from langchain.memory import ConversationSummaryBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain.schema import Document
+from langchain.schema import(
+AIMessage,
+HumanMessage,
+SystemMessage
+)
+
 
 hf_token = st.secrets["auth_key"]
 # App title
