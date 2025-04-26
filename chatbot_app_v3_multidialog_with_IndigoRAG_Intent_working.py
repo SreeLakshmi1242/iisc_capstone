@@ -256,31 +256,30 @@ elif st.session_state.display_stage == 2:
         with st.spinner("Thinking..."):
             response = load_answer(user_input)
             st.subheader("Answer:")
-            st.write(response,key=1)
-             
+     
             # result = qa_chain(st.session_state.current_message["content"]).get('result')
-            # st.session_state.current_message["response"] = result
+            st.session_state.current_message["response"] = result
 
-            # chat_history.append((st.session_state.current_message["content"], result))
-
-
-             
+            chat_history.append((st.session_state.current_message["content"], result))
 
 
              
 
-            # Append both messages
-            # st.session_state.messages.append({
-            #     "role": "Customer",
-            #     "content": st.session_state.current_message["content"],
-            #     "sentiment": st.session_state.current_message["sentiment"],
-            #     "intent": st.session_state.current_message["intent"],
-            #     "score": st.session_state.current_message["score"]
-            # })
-            # st.session_state.messages.append({
-            #     "role": "ChatAgent",
-            #     "content": result
-            # })
+
+             
+
+            Append both messages
+            st.session_state.messages.append({
+                "role": "Customer",
+                "content": st.session_state.current_message["content"],
+                "sentiment": st.session_state.current_message["sentiment"],
+                "intent": st.session_state.current_message["intent"],
+                "score": st.session_state.current_message["score"]
+            })
+            st.session_state.messages.append({
+                "role": "ChatAgent",
+                "content": result
+            })
 
             # Reset state
             st.session_state.current_message = None
