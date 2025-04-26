@@ -177,7 +177,7 @@ chain_type_kwargs = {"prompt": prompt}
 
 # retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
-qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever,
+qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=h_vectordb.as_retriever(search_type="mmr",search_kwargs={"k": 2, "fetch_k":6} ),
                                                  chain_type="stuff",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
 
 
