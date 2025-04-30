@@ -15,6 +15,7 @@ from langchain.chains import RetrievalQA
 from langchain.schema import Document
 from langchain.schema import(AIMessage,HumanMessage,SystemMessage)
 from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
+from langchain_community.chat_models.huggingface import ChatHuggingFace
 
 
 hf_token = st.secrets["auth_key"]
