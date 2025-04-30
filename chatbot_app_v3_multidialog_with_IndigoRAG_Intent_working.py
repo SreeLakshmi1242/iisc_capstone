@@ -196,41 +196,13 @@ Answer : Policy
 
 )
 
-refine_prompt_template = PromptTemplate(
-    input_variables=["context", "question", "existing_answer"],
-    template="""
-The original answer is:
-{existing_answer}
-
-We have some more context below. Use it to refine the original answer if needed.
-
-Additional context:
-{context}
-
-Question:
-{question}
-
-Refined Answer:"""
-)
-
-chain_type_kwargs = {
-    "question_prompt": prompt,
-    "refine_prompt": refine_prompt_template,
-}
-qa_chain = RetrievalQA.from_chain_type(
-    llm=llm,
-    retriever=retriever,
-    chain_type="refine",
-    chain_type_kwargs=chain_type_kwargs,
-    return_source_documents=True
-)
 
 # chain_type_kwargs_2 = {"prompt": prompt2}
 
-# retriever = db.as_retriever()
+retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
-# qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=h_vectordb.as_retriever(search_type="mmr",search_kwargs={"k": 2, "fetch_k":2} ),
-                                                 # chain_type="refine",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
+qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=h_vectordb.as_retriever(search_type="mmr",search_kwargs={"k": 2, "fetch_k":2} ),
+                                                 chain_type="stuff",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
 
 chat_model = llm
 
