@@ -196,9 +196,25 @@ Answer : Policy
 
 )
 
+refine_prompt_template = PromptTemplate(
+    input_variables=["context", "question", "existing_answer"],
+    template="""
+The original answer is:
+{existing_answer}
+
+We have some more context below. Use it to refine the original answer if needed.
+
+Additional context:
+{context}
+
+Question:
+{question}
+
+Refined Answer:"""
+)
 
 chain_type_kwargs = {
-    "question_prompt": question_prompt_template,
+    "question_prompt": prompt,
     "refine_prompt": refine_prompt_template,
 }
 qa_chain = RetrievalQA.from_chain_type(
