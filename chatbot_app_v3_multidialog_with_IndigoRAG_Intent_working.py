@@ -197,7 +197,7 @@ Answer : Policy
 )
 
 
-chain_type_kwargs_2 = {"prompt": prompt}
+chain_type_kwargs = {"prompt": prompt}
 
 # retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
