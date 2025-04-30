@@ -231,7 +231,7 @@ sentiment_pipe = pipeline(
 intent_pipe = pipeline(
     "zero-shot-classification",
     model="facebook/bart-large-mnli",   # very strong zero-shot model
-    device=-1,                          # forces CPU / API
+    device=-1, token=hf_token                         # forces CPU / API
 )
 intent_labels = [
     'Billing issues', 'Loyalty Program & Miles', 'Flight booking',
