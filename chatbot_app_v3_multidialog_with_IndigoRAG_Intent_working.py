@@ -205,9 +205,7 @@ memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", ret
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=h_vectordb.as_retriever(search_type="mmr",search_kwargs={"k": 2, "fetch_k":6} ),
                                                  chain_type="stuff",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
 
-qa_chain2 = RetrievalQA.from_chain_type(llm=llm, retriever=h_vectordb.as_retriever(search_type="mmr",search_kwargs={"k": 2, "fetch_k":6} ),
-                                                 chain_type="stuff",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs_2)
-
+chat_model = ChatHuggingFace(llm = llm)
 
 
 
@@ -288,7 +286,8 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            cat = qa_chain2(st.session_state.current_message["content"])
+            messages = prompt2.format(question=st.session_state.current_message["content"])
+            cat = chat_model.invoke(messages)
             response =  qa_chain(st.session_state.current_message["content"])
             cat_result = cat["result"].split("ANSWER:")[1]
             result = response["result"].split("ANSWER:")[1]
