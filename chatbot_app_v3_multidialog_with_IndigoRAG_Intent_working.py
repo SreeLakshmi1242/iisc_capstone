@@ -206,7 +206,7 @@ memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", ret
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=h_vectordb.as_retriever(search_type="mmr",search_kwargs={"k": 2, "fetch_k":6} ),
                                                  chain_type="stuff",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
 
-chat_model = llm
+# chat_model = llm
 
 
 
@@ -287,14 +287,14 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
-            messages = prompt2.format(question=st.session_state.current_message["content"])
-            cat = chat_model.invoke(messages)
+            # messages = prompt2.format(question=st.session_state.current_message["content"])
+            # cat = chat_model.invoke(messages)
             response =  qa_chain(st.session_state.current_message["content"])
-            cat_result = cat["result"].split("ANSWER:")[1]
+            # cat_result = cat["result"].split("ANSWER:")[1]
             result = response["result"].split("ANSWER:")[1]
 
                  # result = qa_chain(st.session_state.current_message["content"]).get('result')
-            st.session_state.current_message["response"] = cat_result
+            # st.session_state.current_message["response"] = cat_result
             st.session_state.current_message["response"] = result
 
             chat_history.append((st.session_state.current_message["content"], result))
