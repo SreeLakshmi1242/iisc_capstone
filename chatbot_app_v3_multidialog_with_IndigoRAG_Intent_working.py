@@ -176,12 +176,38 @@ ANSWER:
 
 
 )
+
+
+
+prompt2 = PromptTemplate(
+    input_variables=["context", "question"],
+    template= """ Categorise the query- {question} as an Action or Policy.
+    An action includes requests to Book flights, Cancel tickets or Booking details enquiry. All other queries are linked to policies.
+
+Example:
+1. I want to cancel my flight to India
+Answer :  Action
+
+2. How can I claim refund?
+Answer : Policy
+"""
+
+
+)
+
+
 chain_type_kwargs = {"prompt": prompt}
+
+chain_type_kwargs_2 = {"prompt": prompt2}
 
 # retriever = db.as_retriever()
 memory = ConversationSummaryBufferMemory(llm=llm, memory_key="chat_history", return_messages=False)
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=h_vectordb.as_retriever(search_type="mmr",search_kwargs={"k": 2, "fetch_k":6} ),
                                                  chain_type="stuff",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs)
+
+qa_chain2 = RetrievalQA.from_chain_type(llm=llm, retriever=h_vectordb.as_retriever(search_type="mmr",search_kwargs={"k": 2, "fetch_k":6} ),
+                                                 chain_type="stuff",input_key="query",return_source_documents=True,chain_type_kwargs=chain_type_kwargs_2)
+
 
 
 
@@ -262,10 +288,13 @@ elif st.session_state.display_stage == 2:
     display_message(st.session_state.current_message, show_analysis=True)
     if st.session_state.current_message["response"] is None:
         with st.spinner("Thinking..."):
+            cat = qa_chain2(st.session_state.current_message["content"])
             response =  qa_chain(st.session_state.current_message["content"])
+            cat_result = cat["result"].split("ANSWER:")[1]
             result = response["result"].split("ANSWER:")[1]
 
                  # result = qa_chain(st.session_state.current_message["content"]).get('result')
+            st.session_state.current_message["response"] = cat_result
             st.session_state.current_message["response"] = result
 
             chat_history.append((st.session_state.current_message["content"], result))
